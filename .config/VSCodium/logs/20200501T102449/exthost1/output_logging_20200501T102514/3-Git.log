@@ -1,0 +1,69 @@
+Looking for git in: git
+Using git 2.26.2 from git
+> git rev-parse --show-toplevel
+> git rev-parse --git-dir
+Open repository: /home/nicola/Install-Arch-Script
+> git status -z -u
+> git symbolic-ref --short HEAD
+> git rev-parse master
+> git rev-parse --symbolic-full-name master@{u}
+> git rev-list --left-right master...refs/remotes/origin/master
+> git for-each-ref --format %(refname) %(objectname) --sort -committerdate
+> git remote --verbose
+Failed to watch ref '/home/nicola/Install-Arch-Script/.git/refs/remotes/origin/master', is most likely packed.
+Error: ENOENT: no such file or directory, watch '/home/nicola/Install-Arch-Script/.git/refs/remotes/origin/master'
+	at FSWatcher.start (internal/fs/watchers.js:165:26)
+	at Object.watch (fs.js:1270:11)
+	at Object.t.watch (/usr/share/vscodium-bin/resources/app/extensions/git/dist/main.js:1:598268)
+	at T.updateTransientWatchers (/usr/share/vscodium-bin/resources/app/extensions/git/dist/main.js:1:83870)
+	at e.fire (/usr/share/vscodium-bin/resources/app/out/vs/workbench/services/extensions/node/extensionHostProcess.js:48:517)
+	at e.updateModelState (/usr/share/vscodium-bin/resources/app/extensions/git/dist/main.js:1:102740)
+> git config --get commit.template
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076
+> git check-ignore -v -z --stdin
+> git show :installarch2.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git cat-file -s 3b71dcae4563879abab2a15d96338a43d072f037
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076
+> git show :installarch2.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git cat-file -s 3b71dcae4563879abab2a15d96338a43d072f037
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/nicola/Install-Arch-Script/installarch.sh
+> git show :installarch2.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git cat-file -s 3b71dcae4563879abab2a15d96338a43d072f037
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076
+> git show :installarch2.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git cat-file -s 3b71dcae4563879abab2a15d96338a43d072f037
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/nicola/Install-Arch-Script/installarch.sh
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/nicola/Install-Arch-Script/installarch.sh
+> git show :installarch2.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git cat-file -s 3b71dcae4563879abab2a15d96338a43d072f037
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076
+> git show :installarch2.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git cat-file -s 3b71dcae4563879abab2a15d96338a43d072f037
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n21 -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git log --format=%H%n%aN%n%aE%n%at%n%ct%n%P%n%B -z -n41 -- /home/nicola/Install-Arch-Script/installarch2.sh
+> git show :installarch.sh
+> git ls-files --stage -- /home/nicola/Install-Arch-Script/installarch.sh
+> git cat-file -s 4da29650eb07c661a2d3aee80a5ace6cd94cd076

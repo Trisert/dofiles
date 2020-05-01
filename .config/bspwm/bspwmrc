@@ -4,6 +4,7 @@ sxhkd &
 $HOME/.config/polybar/launch.sh
 wal -R
 setxkbmap it
+pulseaudio --start
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
