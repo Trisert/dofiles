@@ -1,10 +1,20 @@
- #!/bin/bash
-if ! updates=$(apt list --upgradable 2> /dev/null| awk '{print $1}' | wc -l); then
-	updates=0
+#!/bin/sh
+#source https://github.com/x70b1/polybar-scripts
+
+
+if ! updates_arch=$(checkupdates 2> /dev/null | wc -l ); then
+    updates_arch=0
 fi
 
-if [ "$updates" -gt 1 ]; then
-	echo "  $(($updates - 1))"
+# if ! updates_aur=$(cower -u 2> /dev/null | wc -l); then
+if ! updates_aur=$(trizen -Su --aur --quiet | wc -l); then
+    updates_aur=0
+fi
+
+updates=$(("$updates_arch" + "$updates_aur"))
+
+if [ "$updates" -gt 0 ]; then
+    echo " $updates"
 else
-	echo "  Up to date"
+    echo "0"
 fi
