@@ -1,5 +1,6 @@
 #! /bin/sh
 
+udiskie &
 sxhkd &
 $HOME/.config/polybar/launch.sh
 wal -R

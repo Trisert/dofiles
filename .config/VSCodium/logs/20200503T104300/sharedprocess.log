@@ -1,0 +1,13 @@
+[2020-05-03 10:43:04.356] [sharedprocess] [info] main {"machineId":"7472ff1cde996d94649bb642bced82f1ba142e44d1c42848eb5d7933e2623941","windowId":2}
+[2020-05-03 10:43:17.001] [sharedprocess] [info] Installing extension: ms-vscode.cpptools
+[2020-05-03 10:43:18.640] [sharedprocess] [info] Downloaded extension: ms-vscode.cpptools /tmp/d7c6b4e3-3085-48e3-be19-90a52a599e17
+[2020-05-03 10:43:18.862] [sharedprocess] [info] Extracted extension to /home/nicola/.vscode-oss/extensions/.ms-vscode.cpptools-0.27.1: ms-vscode.cpptools
+[2020-05-03 10:43:18.863] [sharedprocess] [info] Renamed to /home/nicola/.vscode-oss/extensions/ms-vscode.cpptools-0.27.1
+[2020-05-03 10:43:18.866] [sharedprocess] [info] Installation completed. ms-vscode.cpptools
+[2020-05-03 10:43:18.928] [sharedprocess] [info] Extensions installed successfully: ms-vscode.cpptools
+[2020-05-03 10:43:44.364] [sharedprocess] [info] Starting to clean up unused language packs.
+[2020-05-03 10:44:09.688] [sharedprocess] [info] Installing the extension: ms-vscode.cpptools
+[2020-05-03 10:44:50.437] [sharedprocess] [info] Extracted extension to /home/nicola/.vscode-oss/extensions/.ms-vscode.cpptools-0.28.0-insiders: ms-vscode.cpptools
+[2020-05-03 10:44:50.437] [sharedprocess] [info] Renamed to /home/nicola/.vscode-oss/extensions/ms-vscode.cpptools-0.28.0-insiders
+[2020-05-03 10:44:50.439] [sharedprocess] [info] Installation completed. ms-vscode.cpptools
+[2020-05-03 10:44:50.489] [sharedprocess] [info] Successfully installed the extension: ms-vscode.cpptools

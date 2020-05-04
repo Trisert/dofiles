@@ -1,0 +1,4 @@
+
+[Default Applications]
+x-scheme-handler/discord-461729900748079114=discord-461729900748079114.desktop
+text/x-arduino=arduino-arduinoide.desktop

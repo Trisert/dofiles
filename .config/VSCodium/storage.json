@@ -5,18 +5,21 @@
             "file:///home/nicola/Install-Arch-Script"
         ],
         "files2": [
+            "file:///home/nicola/ShellSort.java",
+            "file:///home/nicola/ShellSort.c",
+            "file:///home/nicola/ShellSort.",
             "file:///home/nicola/.config/polybar/updates.sh"
         ]
     },
     "windowsState": {
         "lastActiveWindow": {
-            "backupPath": "/home/nicola/.config/VSCodium/Backups/1588322379851",
+            "backupPath": "/home/nicola/.config/VSCodium/Backups/1588495593340",
             "uiState": {
                 "mode": 1,
-                "x": 14,
-                "y": 14,
-                "width": 1652,
-                "height": 994
+                "x": 881,
+                "y": 553,
+                "width": 785,
+                "height": 483
             }
         },
         "openedWindows": []
@@ -74,6 +77,39 @@
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/nicola/ShellSort.java",
+                                        "path": "/home/nicola/ShellSort.java",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/ShellSort.java"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/nicola/ShellSort.c",
+                                        "path": "/home/nicola/ShellSort.c",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/ShellSort.c"
+                                },
+                                {
+                                    "id": "openRecentFile",
+                                    "uri": {
+                                        "$mid": 1,
+                                        "external": "file:///home/nicola/ShellSort.",
+                                        "path": "/home/nicola/ShellSort.",
+                                        "scheme": "file"
+                                    },
+                                    "enabled": true,
+                                    "label": "~/ShellSort."
                                 },
                                 {
                                     "id": "openRecentFile",
@@ -603,7 +639,8 @@
                     },
                     {
                         "id": "workbench.action.navigateToLastEditLocation",
-                        "label": "&&Last Edit Location"
+                        "label": "&&Last Edit Location",
+                        "enabled": false
                     },
                     {
                         "id": "vscode.menubar.separator"
