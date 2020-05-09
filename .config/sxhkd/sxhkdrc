@@ -15,7 +15,7 @@ super + Return
         dmenu_run -c -l 20 -nb '#1e1e1e' -sf '#1e1e1e' -sb '#f4800d' -nf '#F4800d'
 
 super + @space
-        rofi -show run -show calc -modi calc,run -no-show-match -no-sort
+        rofi -show run -show calc -modi calc,run -no-show-match -no-sort  
 
 # make sxhkd reload its configuration files:
 super + Escape

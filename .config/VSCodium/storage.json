@@ -17,9 +17,9 @@
             "uiState": {
                 "mode": 1,
                 "x": 881,
-                "y": 553,
+                "y": 14,
                 "width": 785,
-                "height": 483
+                "height": 1022
             }
         },
         "openedWindows": []
@@ -58,8 +58,7 @@
                             "items": [
                                 {
                                     "id": "workbench.action.reopenClosedEditor",
-                                    "label": "&&Reopen Closed Editor",
-                                    "enabled": false
+                                    "label": "&&Reopen Closed Editor"
                                 },
                                 {
                                     "id": "vscode.menubar.separator"
@@ -639,8 +638,7 @@
                     },
                     {
                         "id": "workbench.action.navigateToLastEditLocation",
-                        "label": "&&Last Edit Location",
-                        "enabled": false
+                        "label": "&&Last Edit Location"
                     },
                     {
                         "id": "vscode.menubar.separator"
