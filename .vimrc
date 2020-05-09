@@ -42,6 +42,12 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     
     " Lightline
      Plug 'itchyny/lightline.vim'
+     
+     Plug 'lilydjwg/colorizer'
+
+     Plug 'kovetskiy/sxhkd-vim'
+
+
 
     " " Unmanaged plugin (manually installed and updated)
     " Plug '~/my-prototype-plugin'
@@ -49,7 +55,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     " " Initialize plugin system
      call plug#end()
 
-
+ set nocompatible
  set number
 
  set laststatus=2
@@ -57,4 +63,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
  let g:lightline = {
 	\'colorscheme': 'seoul256',
 	\ }
+
+
 
