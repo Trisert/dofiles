@@ -45,13 +45,18 @@ if empty(glob('~/.vim/autoload/plug.vim'))
      
      Plug 'lilydjwg/colorizer'
 
+     Plug 'kovetskiy/sxhkd-vim'
+
+
+
+
     " " Unmanaged plugin (manually installed and updated)
     " Plug '~/my-prototype-plugin'
     
     " " Initialize plugin system
      call plug#end()
 
-
+ set nocompatible
  set number
 
  set laststatus=2
