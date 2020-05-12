@@ -1,5 +1,6 @@
 #! /bin/sh
 
+searx-run & 
 udiskie &
 sxhkd &
 $HOME/.config/polybar/launch.sh
