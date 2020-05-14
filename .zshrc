@@ -9,8 +9,6 @@ alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home
 
 export FZF_DEFAULT_COMMAND="find /"
 
-
-
 # Import colorscheme from 'wal' asynchronously
 # # &   # Run the process in the background.
 # # ( ) # Hide shell job control messages.
@@ -81,7 +79,32 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
 
-source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+
+
+# 
+
+source ~/.antigen.zsh
+
+# Load the oh-my-zsh's library.
+ antigen use oh-my-zsh
+
+# # Bundles from the default repo (robbyrussell's oh-my-zsh).
+ antigen bundle git
+ antigen bundle heroku
+ antigen bundle pip
+ antigen bundle lein
+ antigen bundle command-not-found
+ antigen bundle extract
+# # Syntax highlighting bundle.
+ antigen bundle zsh-users/zsh-syntax-highlighting
+
+# # Load the theme.
+ antigen theme romkatv/powerlevel10k
+
+# # Tell Antigen that you're done.
+ antigen apply
