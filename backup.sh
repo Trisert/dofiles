@@ -1,0 +1,42 @@
+rm backup-Nicola.tar.gz
+
+tar -cpvzf backup-Nicola.tar.gz \
+	--exclude=backup-name.tar.gz\
+	--exclude=.cache \
+	--exclude=.debug \
+	--exclude=.dbus \
+	--exclude=.gvfs \
+	--exclude=.local/share/gvfs-metadata \
+	--exclude=.local/share/Trash \
+	--exclude=.recently-used \
+	--exclude=.thumbnails \
+	--exclude=.xsession-errors \
+	--exclude=.Trash \
+	--exclude=.steam \
+	--exclude=GitHub \
+	--exclude=Public \
+	--exclude=Steam \
+	--exclude=Templates \
+	--exclude="VirtualBox VMs" \
+	--exclude=go \
+	--exclude=Wallpaper \
+	--exclude=ghidra* \
+	--exclude=.npm \
+	--exclude=".config/discord" \
+	--exclude=".config/VSCodium" \
+	--exclude=".config/chromium" \
+	--exclude=".mozilla" \
+	--exclude=".BurpSuite" \
+	--exclude=.cmake \
+	--exclude=.cargo \
+        --exclude=.elinks \
+        --exclude=.ghidra \
+	--exclude=".local" \
+	--exclude=".config/qutebrowser" \
+	--exclude=".gem" \
+	--exclude=.rvm \
+	--exclude=.dotfiles \
+	--exclude=backup-Nicola.tar.gz \
+	--exclude=.vcode-oss \
+	--exclude=First. \
+	--warning=no-file-changed .
