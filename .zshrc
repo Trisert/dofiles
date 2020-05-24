@@ -101,6 +101,8 @@ source ~/.antigen.zsh
  antigen bundle command-not-found
  antigen bundle extract
  antigen bundle zsh-autosuggestions
+ antigen bundle autojump
+
 # # Syntax highlighting bundle.
  antigen bundle zsh-users/zsh-syntax-highlighting
 
