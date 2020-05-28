@@ -1,11 +1,11 @@
 #! /bin/sh
 
+setxkbmap it
 searx-run & 
 udiskie &
 sxhkd &
-$HOME/.config/polybar/launch.sh
 wal -R
-setxkbmap it
+picom &
 
 bspc monitor -d I II III IV V VI VII VIII IX X
 
