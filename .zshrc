@@ -7,6 +7,8 @@ fi
 
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 
+
+export EDITOR=vim
 export FZF_DEFAULT_COMMAND="find /"
 
 # Import colorscheme from 'wal' asynchronously
