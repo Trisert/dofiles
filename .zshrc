@@ -22,6 +22,8 @@ export FZF_DEFAULT_COMMAND="find /"
 # # To add support for TTYs this line can be optionally added.
  source ~/.cache/wal/colors-tty.sh
 
+ source /usr/share/nvm/init-nvm.sh
+
 # fzf scripts
 
 # Change including hidden directories
