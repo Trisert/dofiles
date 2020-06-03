@@ -39,4 +39,6 @@ tar -cpvzf backup-Nicola.tar.gz \
 	--exclude=backup-Nicola.tar.gz \
 	--exclude=.vcode-oss \
 	--exclude=First. \
+	--exclude=.nvm \
+	--exclude=backup.tar.gz.gpg \
 	--warning=no-file-changed .
