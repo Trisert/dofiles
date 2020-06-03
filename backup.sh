@@ -41,4 +41,5 @@ tar -cpvzf backup-Nicola.tar.gz \
 	--exclude=First. \
 	--exclude=.nvm \
 	--exclude=backup.tar.gz.gpg \
+	--exclude=.wine \
 	--warning=no-file-changed .
