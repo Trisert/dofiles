@@ -40,6 +40,7 @@ tar -cpvzf backup-Nicola.tar.gz \
 	--exclude=.vcode-oss \
 	--exclude=First. \
 	--exclude=.nvm \
-	--exclude=backup.tar.gz.gpg \
+	--exclude=backup-Nicola.tar.gz.gpg \
 	--exclude=.wine \
+	--exclude="Downloads/iso" \
 	--warning=no-file-changed .
