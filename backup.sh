@@ -1,7 +1,7 @@
-rm backup-Nicola.tar.gz
+rm backup-Nicola.tar.zst
 
-tar -cpvzf backup-Nicola.tar.gz \
-	--exclude=backup-name.tar.gz\
+tar -cpvzf backup-Nicola.tar.zst \
+	--exclude=backup-name.tar.zst\
 	--exclude=.cache \
 	--exclude=.debug \
 	--exclude=.dbus \
@@ -36,11 +36,14 @@ tar -cpvzf backup-Nicola.tar.gz \
 	--exclude=".gem" \
 	--exclude=.rvm \
 	--exclude=.dotfiles \
-	--exclude=backup-Nicola.tar.gz \
+	--exclude=backup-Nicola.tar.zst \
 	--exclude=.vcode-oss \
 	--exclude=First. \
 	--exclude=.nvm \
 	--exclude=backup-Nicola.tar.gz.gpg \
 	--exclude=.wine \
 	--exclude="Downloads/iso" \
+	--exclude=.antigen \
+	--exclude=.netbeans \
+	--exclude=.vim  \
 	--warning=no-file-changed .
