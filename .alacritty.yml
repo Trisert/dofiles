@@ -180,38 +180,35 @@ font:
   #use_thin_strokes: true
 
 # If `true`, bold text is drawn using the bright color variants.
-#draw_bold_text_with_bright_colors: true
+draw_bold_text_with_bright_colors: true
 
-
-
-# Colors (Blood Moon)
-#colors:
+colors:
   # Default colors
-  #primary:
-    #background: '#10100E'
-    #foreground: '#C6C6C4'
+  primary:
+    background: '0x1b0c14'
+    foreground: '0xdcbfcd'
 
   # Normal colors
-  #normal:
-    #black:   '#10100E'
-    #red:     '#C40233'
-    #green:   '#009F6B'
-    #yellow:  '#FFD700'
-    #blue:    '#0087BD'
-    #magenta: '#9A4EAE'
-    #cyan:    '#20B2AA'
-    # white:   '#C6C6C4'
+  normal:
+    black:   '0x291520'
+    red:     '0x351d2a'
+    green:   '0xffffff'
+    yellow:  '0x6a3f56'
+    blue:    '0x905876'
+    magenta: '0xbb789c'
+    cyan:    '0xd1aabd'
+    white:   '0xeddfe6'
 
   # Bright colors
-    # bright:
-    # black:   '#696969'
-    # red:     '#FF2400'
-    # green:   '#03C03C'
-    # yellow:  '#FDFF00'
-    # blue:    '#007FFF'
-    # magenta: '#FF1493'
-    # cyan:    '#00CCCC'
-    # white:   '#FFFAFA'
+  bright:
+    black:   '0xf9ad7f'
+    red:     '0xeec3ae'
+    green:   '0x3ebad4'
+    yellow:  '0x4bd7a9'
+    blue:    '0x55ba96'
+    magenta: '0xee79bb'
+    cyan:    '0x76cde4'
+    white:   '0xcfc3ef'
 
   # Dim colors
   #
@@ -267,7 +264,7 @@ font:
 #
 # Window opacity as a floating point number from `0.0` to `1.0`.
 # The value `0.0` is completely transparent and `1.0` is opaque.
-#background_opacity: 1.0
+#background_opacity: 0.5
 
 #selection:
   #semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
@@ -276,7 +273,7 @@ font:
   #save_to_clipboard: false
 
 # Allow terminal applications to change Alacritty's window title.
-#dynamic_title: true
+dynamic_title: true
 
 #cursor:
   # Cursor style
