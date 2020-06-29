@@ -8,11 +8,9 @@ fi
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 
 
-export EDITOR=vim
-export FZF_DEFAULT_COMMAND="find /"
+export EDITOR=nvim
+export FZF_DEFAULT_COMMAND="fd . -E /proc --type file --follow --hidden /"
 
-
- source /usr/share/nvm/init-nvm.sh
 
 # fzf scripts
 
@@ -59,7 +57,7 @@ fo() (
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-nvim} "$file"
   fi
 )
 
