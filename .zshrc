@@ -9,7 +9,7 @@ alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home
 
 
 export EDITOR=nvim
-export FZF_DEFAULT_COMMAND="fd . -E /bin -E /proc --type file --follow --hidden /"
+export FZF_DEFAULT_COMMAND="find /"
 
 
 # fzf scripts
