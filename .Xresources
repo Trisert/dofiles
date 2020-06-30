@@ -35,10 +35,10 @@
 *.color7:       #dee6c6
 *.color15:      #9cad61
 
-URxvt.font: xft:JetBrains Mono:style=Regular:size=10
-URxvt.boldFont: xft:JetBrains Mono:style=Bold:size=10
-URxvt.italicFont: xft:JetBrains Mono:style=Italic:size=10
-URxvt.boldItalicFont: xft:JetBrains Mono:style=Bold Italic:size=10
+URxvt.font: xft:MesloLGS NF:style=Regular:size=10
+URxvt.boldFont: xft:MesloLGS NF:style=Bold:size=10
+URxvt.italicFont: xft:MesloLGS NF:style=Italic:size=10
+URxvt.boldItalicFont: xft:MesloLGS NF:style=Bold Italic:size=10
 URxvt.letterSpace: 0
 URxvt.lineSpace: 0
 URxvt.scrollBar: false
