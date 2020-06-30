@@ -7,6 +7,8 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
+import Graphics.X11.ExtraTypes.XF86
+
 import XMonad
 import Data.Monoid
 import System.Exit
@@ -80,6 +82,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
+
+    -- Lower Volume
+    , ((0,         xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
+
+    -- Raise Volume
+    , ((0,         xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
