@@ -1,1 +1,2 @@
-exec dwm
+exec xmonad 
+sh .fehbg
