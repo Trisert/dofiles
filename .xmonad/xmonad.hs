@@ -7,13 +7,17 @@
 -- Normally, you'd only override those defaults you care about.
 --
 
-import Graphics.X11.ExtraTypes.XF86
-
 import XMonad
 import Data.Monoid
 import System.Exit
 
 import XMonad.Util.SpawnOnce
+import XMonad.Util.Run
+
+import XMonad.Layout.Spacing
+import XMonad.Layout.ResizableTile
+
+import XMonad.Hooks.ManageDocks
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -72,19 +76,13 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
+    -- Lock Screen
+    , ((modm,               xK_a),      spawn "slock")
+
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
 
-    -- Lock screen
-    , ((modm,               xK_a),      spawn "slock")
-
-    -- Raise Volume
-    , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
-
-    -- Lower Volume
-    , ((0, xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
-
-    -- Rotate through the available layout algorithms
+     -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
@@ -111,6 +109,19 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
 
+    -- Swap the focused window with the previous window
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+
+    -- Shrink the master area
+    , ((modm,               xK_h     ), sendMessage Shrink)
+
+    -- Expand the master area
+    , ((modm,               xK_l     ), sendMessage Expand)
+
+    -- Push window back into tiling
+    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+
+    -- Increment the number of windows in the master area
     -- Swap the focused window with the previous window
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
 
@@ -196,31 +207,20 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = tiled ||| Mirror tiled ||| Full
+myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
+     tiled   = spacing 3 $ ResizableTall nmaster delta ratio [] 
 
      -- The default number of windows in the master pane
      nmaster = 1
 
      -- Default proportion of screen occupied by master pane
      ratio   = 1/2
-
-     -- Percent of screen to increment by when resizing panes
+     
      delta   = 3/100
 
-------------------------------------------------------------------------
--- Window rules:
-
--- Execute arbitrary actions and WindowSet manipulations when managing
--- a new window. You can use this to, for example, always float a
--- particular program, or have a client always appear on a particular
--- workspace.
---
--- To find the property name associated with a program, use
--- > xprop | grep WM_CLASS
--- and click on the client you're interested in.
+     -- Percent of screen to increment by when resizing panes
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
@@ -258,15 +258,17 @@ myLogHook = return ()
 -- By default, do nothing.
 myStartupHook = do
        spawnOnce "setxkbmap it"
-       spawnOnce "udiskie &"
-       spawnOnce "sh .fehbg"
+       spawnOnce "udiskie"
+       spawnOnce "sh "
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
-main = xmonad defaults
+main = do
+  xmproc <- spawnPipe "xmobar /home/nicola/.config/xmobar/xmobarrc"
+  xmonad $ docks defaults
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
