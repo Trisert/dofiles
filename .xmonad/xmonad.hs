@@ -14,8 +14,10 @@ import System.Exit
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 
+import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Renamed (renamed, Rename(Replace))
 
 import XMonad.Hooks.ManageDocks
 
@@ -207,10 +209,13 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
+
 myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = spacing 3 $ ResizableTall nmaster delta ratio [] 
+     tiled   =  renamed [Replace "Tall"] 
+           $ spacingRaw True (Border 10 0 10 0) True (Border 0 10 0 10) True 
+           $ ResizableTall 1 (3/100) (1/2) []
 
      -- The default number of windows in the master pane
      nmaster = 1
@@ -259,7 +264,7 @@ myLogHook = return ()
 myStartupHook = do
        spawnOnce "setxkbmap it"
        spawnOnce "udiskie"
-       spawnOnce "sh "
+       spawnOnce "sh .fehbg"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -267,7 +272,7 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-  xmproc <- spawnPipe "xmobar /home/nicola/.config/xmobar/xmobarrc"
+  xmproc <- spawnPipe "xmobar"
   xmonad $ docks defaults
 
 -- A structure containing your configuration settings, overriding
