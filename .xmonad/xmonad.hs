@@ -266,6 +266,7 @@ myStartupHook = do
        spawnOnce "udiskie"
        spawnOnce "sh .fehbg"
        spawnOnce "urxvtd --quiet --opendisplay --fork"
+       spawnOnce "xrdb /home/nicola/.Xresources"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
