@@ -75,6 +75,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
 
+    -- Lock screen
+    , ((modm,               xK_a),      spawn "slock")
+
     -- Raise Volume
     , ((0, xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
 
