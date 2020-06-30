@@ -27,7 +27,7 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "urxvtc"
+myTerminal      = "alacritty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -265,8 +265,6 @@ myStartupHook = do
        spawnOnce "setxkbmap it"
        spawnOnce "udiskie"
        spawnOnce "sh .fehbg"
-       spawnOnce "urxvtd --quiet --opendisplay --fork"
-       spawnOnce "xrdb /home/nicola/.Xresources"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
