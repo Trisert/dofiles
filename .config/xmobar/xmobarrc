@@ -18,8 +18,6 @@ Config { font = "xft:MesloLGS NF:pixelsize=:antialias=true:hinting=true"
                                           "--normal","green",
                                           "--high","red",
                                           "--low","lightblue"] 36000
-                    , Run Network "eth0" ["-L","0","-H","32",
-                                          "--normal","green","--high","red"] 10
                     , Run Network "eno1" ["-L","0","-H","32",
                                           "--normal","green","--high","red"] 10
                     , Run Cpu ["-L","3","-H","50",
@@ -31,6 +29,6 @@ Config { font = "xft:MesloLGS NF:pixelsize=:antialias=true:hinting=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %eno1% }\
+       , template = "%cpu% | %memory% * %swap% | %eno1% }\
                     \{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
        }
