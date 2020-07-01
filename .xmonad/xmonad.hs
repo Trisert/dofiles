@@ -10,11 +10,15 @@
 import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
+import XMonad.Prompt
+import XMonad.Prompt.Shell
 import Data.Monoid
 import System.Exit
+import XMonad.ManageHook
 
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
+import XMonad.Util.NamedScratchpad
 
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing
@@ -29,8 +33,8 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
-myTerminal      = "alacritty"
-
+myTerminal = "alacritty"
+myBrowser  = "firefox-bin"     
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -64,7 +68,22 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff0000"
+myFocusedBorderColor = "#ff6600"
+
+-- Scatchpads
+myScratchPads :: [NamedScratchpad]
+myScratchPads = [
+      NS "htop" spawnTerm findTerm manageTerm
+    ] 
+ where 
+ spawnTerm = myTerminal ++ " -e htop"
+ findTerm  = resource =? "htop"
+ manageTerm = customFloating $ W.RationalRect l t w h
+            where
+	     h = 0.9
+	     w = 0.9
+	     t = 0.95 -h
+	     l = 0.95 -w
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -82,12 +101,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
+    
+    -- Launch myBrowser
+    , ((modm,               xK_s),      safeSpawnProg myBrowser)
+
+    -- Shell Prompt Istance
+    , ((modm .|. controlMask, xK_x), shellPrompt def)
 
     -- Lower Volume
     , ((0,         xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
 
     -- Raise Volume
     , ((0,         xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+
+    -- Launch Htop Scratchpad
+    , ((modm,               xK_g), namedScratchpadAction myScratchPads "htop")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -240,7 +268,8 @@ myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
     , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    , resource  =? "kdesktop"       --> doIgnore 
+    ] <+> namedScratchpadManageHook myScratchPads
 
 ------------------------------------------------------------------------
 -- Event handling
