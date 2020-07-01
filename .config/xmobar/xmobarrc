@@ -31,6 +31,6 @@ Config { font = "xft:MesloLGS NF:pixelsize=:antialias=true:hinting=true"
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%cpu% | %memory% * %swap% | %eth0% - %eth1% }\
+       , template = "%cpu% | %memory% * %swap% | %eth0% - %eno1% }\
                     \{ <fc=#ee9a00>%date%</fc>| %EGPF% | %uname%"
        }
