@@ -246,11 +246,14 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- which denotes layout choice.
 --
 
+mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
+mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
+
 myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   =  renamed [Replace "Tall"] 
-           $ spacingRaw True (Border 10 0 10 0) True (Border 0 10 0 10) True 
+           $ mySpacing 7 
            $ ResizableTall 1 (3/100) (1/2) []
 
      -- The default number of windows in the master pane
@@ -261,7 +264,7 @@ myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full)
      
      delta   = 3/100
 
-     -- Percent of screen to increment by when resizing panes
+-- Percent of screen to increment by when resizing panes
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
