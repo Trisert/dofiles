@@ -73,11 +73,11 @@ myFocusedBorderColor = "#ff6600"
 -- Scatchpads
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [
-      NS "bashtop" spawnTerm findTerm manageTerm
+      NS "htop" spawnTerm findTerm manageTerm
     ] 
  where 
- spawnTerm = myTerminal ++ " -e bashtop"
- findTerm  = resource =? "bashtop"
+ spawnTerm = myTerminal ++ " -e htop"
+ findTerm  = resource =? "htop"
  manageTerm = customFloating $ W.RationalRect l t w h
             where
 	     h = 0.9
@@ -115,7 +115,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((0,         xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
 
     -- Launch Htop Scratchpad
-    , ((modm,               xK_g), namedScratchpadAction myScratchPads "bashtop")
+    , ((modm,               xK_g), namedScratchpadAction myScratchPads "htop")
 
     -- close focused window
     , ((modm .|. shiftMask, xK_c     ), kill)
@@ -253,7 +253,7 @@ myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   =  renamed [Replace "Tall"] 
-           $ mySpacing 6 
+           $ mySpacing 8 
            $ ResizableTall 1 (3/100) (1/2) []
 
      -- The default number of windows in the master pane
