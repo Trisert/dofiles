@@ -19,7 +19,6 @@ alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home
 
 source /usr/share/zsh/share/antigen.zsh
 
-export EDITOR=nvim
 export FZF_DEFAULT_COMMAND="locate /"
 
 
