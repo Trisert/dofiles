@@ -1,3 +1,13 @@
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+# To add support for TTYs this line can be optionally added.
+source ~/.cache/wal/colors-tty.sh
+
+
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -7,6 +17,7 @@ fi
 
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 
+source /usr/share/zsh/share/antigen.zsh
 
 export EDITOR=nvim
 export FZF_DEFAULT_COMMAND="locate /"
@@ -76,11 +87,10 @@ export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
-
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 # 
 
-source ~/.antigen.zsh
 
 # Load the oh-my-zsh's library.
  antigen use oh-my-zsh
@@ -103,3 +113,4 @@ source ~/.antigen.zsh
 
 # # Tell Antigen that you're done.
  antigen apply
+
