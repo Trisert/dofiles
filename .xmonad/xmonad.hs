@@ -34,7 +34,7 @@ import qualified Data.Map        as M
 -- certain contrib modules.
 --
 myTerminal = "alacritty"
-myBrowser  = "firefox-bin"     
+myBrowser  = "firefox"     
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -304,7 +304,7 @@ myLogHook = return ()
 myStartupHook = do
        spawnOnce "setxkbmap it"
        spawnOnce "udiskie"
-       spawnOnce "sh .fehbg"
+       spawnOnce "wal -R"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
