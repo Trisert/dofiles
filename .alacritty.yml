@@ -10,7 +10,7 @@
   # each instance of Alacritty. If it is not present, alacritty will
   # check the local terminfo database and use `alacritty` if it is
   # available, otherwise `xterm-256color` is used.
-  #TERM: xterm-256color
+  # TERM: xterm-256color
 
 #window:
   # Window dimensions (changes require restart)
@@ -182,33 +182,33 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-colors:
+#colors:
   # Default colors
-  primary:
-    background: '0x1b0c14'
-    foreground: '0xdcbfcd'
+  # primary:
+ #  background: '0x1b0c14'
+ #  foreground: '0xdcbfcd'
 
   # Normal colors
-  normal:
-    black:   '0x291520'
-    red:     '0x351d2a'
-    green:   '0xffffff'
-    yellow:  '0x6a3f56'
-    blue:    '0x905876'
-    magenta: '0xbb789c'
-    cyan:    '0xd1aabd'
-    white:   '0xeddfe6'
+  # normal:
+  #  black:   '0x291520'
+  # red:     '0x351d2a'
+  # green:   '0xffffff'
+  # yellow:  '0x6a3f56'
+  # blue:    '0x905876'
+  # magenta: '0xbb789c'
+  # cyan:    '0xd1aabd'
+  # white:   '0xeddfe6'
 
   # Bright colors
-  bright:
-    black:   '0xf9ad7f'
-    red:     '0xeec3ae'
-    green:   '0x3ebad4'
-    yellow:  '0x4bd7a9'
-    blue:    '0x55ba96'
-    magenta: '0xee79bb'
-    cyan:    '0x76cde4'
-    white:   '0xcfc3ef'
+  # bright:
+  #black:   '0xf9ad7f'
+  # red:     '0xeec3ae'
+  # green:   '0x3ebad4'
+  # yellow:  '0x4bd7a9'
+  # blue:    '0x55ba96'
+  # magenta: '0xee79bb'
+  #cyan:    '0x76cde4'
+    # white:   '0xcfc3ef'
 
   # Dim colors
   #
