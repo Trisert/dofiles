@@ -305,6 +305,7 @@ myStartupHook = do
        spawnOnce "setxkbmap it"
        spawnOnce "udiskie"
        spawnOnce "wal -R"
+       spawnOnce "transmission-daemon"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
