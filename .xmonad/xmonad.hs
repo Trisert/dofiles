@@ -109,7 +109,7 @@ ndXPConfig = def
       , showCompletionOnTab = False
       , searchPredicate     = fuzzyMatch
       , alwaysHighlight     = True
-      , maxComplRows        = Nothing      -- set to Just 5 for 5 rows
+      , maxComplRows        = Just 6      -- set to Just 5 for 5 rows
       , promptKeymap        = defaultXPKeymap
       }
 
