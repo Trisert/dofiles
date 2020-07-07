@@ -1,33 +1,31 @@
---
--- xmonad example config file.
---
--- A template showing all available configuration hooks,
--- and how to override the defaults in your own xmonad.hs conf file.
---
--- Normally, you'd only override those defaults you care about.
---
-
+-- System --
 import Graphics.X11.ExtraTypes.XF86
-
 import XMonad
-import XMonad.Prompt.FuzzyMatch
-import XMonad.Prompt.Input
-import XMonad.Prompt
-import XMonad.Prompt.Shell 
-import XMonad.Prompt.XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.ManageHook
 
+-- Prompt --
+import XMonad.Prompt
+import XMonad.Prompt.FuzzyMatch
+import XMonad.Prompt.Input
+import XMonad.Prompt.Shell
+import XMonad.Prompt.XMonad
+import XMonad.Prompt.Man
+
+-- Util --
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
 
+-- Layout --
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 
+
+-- Hooks --
 import XMonad.Hooks.ManageDocks
 
 import qualified XMonad.StackSet as W
@@ -82,7 +80,7 @@ myScratchPads = [
       NS "htop" spawnTerm findTerm manageTerm
     ] 
  where 
- spawnTerm = myTerminal ++ " -e htop"
+ spawnTerm = myTerminal ++ " -t htop -e htop"
  findTerm  = resource =? "htop"
  manageTerm = customFloating $ W.RationalRect l t w h
             where
@@ -132,6 +130,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Launch ShellPrompt
      , ((modm, xK_p), shellPrompt ndXPConfig )
+     
+    -- Launch ManPrompt
+     , ((modm .|. shiftMask, xK_m), manPrompt ndXPConfig)
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
