@@ -1,6 +1,6 @@
 Config { font = "xft:JetBrains Mono:pixelsize=13:antialias=true:hinting=true"
        , additionalFonts = []
-       , bgColor = "#ea8d53"
+       , bgColor = "#261823"
        , fgColor = "#ffffff"
        , alpha = 255
        , position = Top
