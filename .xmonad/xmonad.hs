@@ -74,7 +74,7 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 -- Border colors for unfocused and focused windows, respectively.
 --
 myNormalBorderColor  = "#dddddd"
-myFocusedBorderColor = "#ff6600"
+myFocusedBorderColor = "#261823"
 
 -- Scatchpads
 myScratchPads :: [NamedScratchpad]
