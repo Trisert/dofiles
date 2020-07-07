@@ -10,8 +10,11 @@
 import Graphics.X11.ExtraTypes.XF86
 
 import XMonad
+import XMonad.Prompt.FuzzyMatch
+import XMonad.Prompt.Input
 import XMonad.Prompt
-import XMonad.Prompt.Shell
+import XMonad.Prompt.Shell 
+import XMonad.Prompt.XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.ManageHook
@@ -33,7 +36,10 @@ import qualified Data.Map        as M
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 --
+myTerminal :: String 
 myTerminal = "alacritty"
+
+
 myBrowser  = "firefox"     
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -86,27 +92,52 @@ myScratchPads = [
 	     l = 0.95 -w
 
 ------------------------------------------------------------------------
+-- Xprompt Settings
+ndXPConfig :: XPConfig
+ndXPConfig = def
+      { font = "xft: JetBrains Mono:regular:pixelsize=13"
+      , bgColor             = "#261823"
+      , fgColor             = "#ffffff"
+      , bgHLight            = "#f2a59a"
+      , fgHLight            = "#ffffff"
+      , borderColor         = "#535974"
+      , promptBorderWidth   = 0
+      , position            = Top
+      , height              = 23
+      , historySize         = 256
+      , historyFilter       = id
+      , defaultText         = []
+      , autoComplete        = Nothing -- set Just 100000 for .1 sec
+      , showCompletionOnTab = False
+      , searchPredicate     = fuzzyMatch
+      , alwaysHighlight     = True
+      , maxComplRows        = Nothing      -- set to Just 5 for 5 rows
+      , promptKeymap        = defaultXPKeymap
+      }
+
+
+------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modm .|. shiftMask, xK_Return), spawn myTerminal)
 
     -- launch dmenu
-    , ((modm,               xK_p     ), spawn "dmenu_run")
+    --, ((modm,               xK_p     ), spawn "dmenu_run")
 
     -- launch gmrun
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+
+    -- Launch ShellPrompt
+     , ((modm, xK_p), shellPrompt ndXPConfig )
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
     
     -- Launch myBrowser
     , ((modm,               xK_s),      safeSpawnProg myBrowser)
-
-    -- Shell Prompt Istance
-    , ((modm .|. controlMask, xK_x), shellPrompt def)
 
     -- Lower Volume
     , ((0,         xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
