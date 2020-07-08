@@ -4,6 +4,7 @@ import XMonad
 import Data.Monoid
 import System.Exit
 import XMonad.ManageHook
+import Data.Char
 
 -- Prompt --
 import XMonad.Prompt
@@ -37,8 +38,12 @@ import qualified Data.Map        as M
 myTerminal :: String 
 myTerminal = "alacritty"
 
+myBrowser  :: String
+myBrowser  = "firefox"
 
-myBrowser  = "firefox"     
+myFont :: String
+myFont = "xft: JetBrains Mono:regular:pixelsize=13"
+
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
 myFocusFollowsMouse = True
@@ -93,7 +98,7 @@ myScratchPads = [
 -- Xprompt Settings
 ndXPConfig :: XPConfig
 ndXPConfig = def
-      { font = "xft: JetBrains Mono:regular:pixelsize=13"
+      { font = myFont
       , bgColor             = "#261823"
       , fgColor             = "#ffffff"
       , bgHLight            = "#f2a59a"
@@ -115,6 +120,21 @@ ndXPConfig = def
 
 
 ------------------------------------------------------------------------
+-- CUSTOM PROMPTS
+------------------------------------------------------------------------
+-- calcPrompt requires a cli calculator called qalcualte-gtk.
+-- You could use this as a template for other custom prompts that
+-- use command line programs that return a single line of output.
+calcPrompt :: XPConfig -> String -> X ()
+calcPrompt c ans =
+    inputPrompt c (trim ans) ?+ \input ->
+        liftIO(runProcessWithInput "qalc" [input] "") >>= calcPrompt c
+    where
+        trim  = f . f
+            where f = reverse . dropWhile isSpace
+
+
+------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
@@ -133,6 +153,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
      
     -- Launch ManPrompt
      , ((modm .|. shiftMask, xK_m), manPrompt ndXPConfig)
+     
+    -- Lauch CalcPrompt
+     , ((modm .|. shiftMask, xK_l), calcPrompt ndXPConfig "qalc")
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
