@@ -47,7 +47,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 
      Plug 'kovetskiy/sxhkd-vim'
 
-
+     Plug 'ghifarit53/sonokai'
 
 
     " " Unmanaged plugin (manually installed and updated)
@@ -62,6 +62,17 @@ if empty(glob('~/.vim/autoload/plug.vim'))
  set laststatus=2
 
  let g:lightline = {
-	\'colorscheme': 'seoul256',
+	\'colorscheme': 'sonokai',
 	\ }
+
+ " important!!
+set termguicolors
+
+" the configuration options should be placed before `colorscheme sonokai`
+let g:sonokai_style = 'espresso'
+let g:sonokai_enable_italic = 1
+let g:sonokai_disable_italic_comment = 1
+
+colorscheme sonokai
+
 
