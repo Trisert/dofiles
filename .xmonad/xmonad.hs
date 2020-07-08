@@ -25,9 +25,9 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
 
-
 -- Hooks --
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -355,6 +355,7 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
+       setWMName "LG3D"
        spawnOnce "setxkbmap it"
        spawnOnce "udiskie"
        spawnOnce "wal -R"
