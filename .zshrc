@@ -1,3 +1,12 @@
+# Import colorscheme from 'wal' asynchronously
+# &   # Run the process in the background.
+# ( ) # Hide shell job control messages.
+(cat ~/.cache/wal/sequences &)
+
+ # To add support for TTYs this line can be optionally added.
+source ~/.cache/wal/colors-tty.sh
+
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -104,11 +113,3 @@ export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
 # # Tell Antigen that you're done.
  antigen apply
 
-
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
-(cat ~/.cache/wal/sequences &)
-  
-# To add support for TTYs this line can be optionally added.
-source ~/.cache/wal/colors-tty.sh
