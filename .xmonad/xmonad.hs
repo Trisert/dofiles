@@ -13,6 +13,7 @@ import XMonad.Prompt.Input
 import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
 import XMonad.Prompt.Man
+import XMonad.Prompt.Layout
 
 -- Util --
 import XMonad.Util.SpawnOnce
@@ -24,17 +25,23 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.Spacing
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Renamed (renamed, Rename(Replace))
+import XMonad.Layout.SimplestFloat
+import XMonad.Layout.LimitWindows
+import XMonad.Layout.NoBorders
 
 -- Hooks --
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 
+-- Actions --
+import XMonad.Actions.WithAll
+import XMonad.Actions.WindowMenu
+
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
--- The preferred terminal program, which is used in a binding below and by
--- certain contrib modules.
---
+
+
 myTerminal :: String 
 myTerminal = "alacritty"
 
@@ -154,8 +161,14 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Launch ManPrompt
      , ((modm .|. shiftMask, xK_m), manPrompt ndXPConfig)
      
-    -- Lauch CalcPrompt
+    -- Launch CalcPrompt
      , ((modm .|. shiftMask, xK_l), calcPrompt ndXPConfig "qalc")
+
+    -- Launch LayoutPompt
+    , ((modm .|. shiftMask,  xK_y), layoutPrompt ndXPConfig)
+    
+    -- SinkAll floating windows
+     , ((modm .|. shiftMask, xK_t), sinkAll)
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
@@ -302,20 +315,15 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 mySpacing :: Integer -> l a -> XMonad.Layout.LayoutModifier.ModifiedLayout Spacing l a
 mySpacing i = spacingRaw False (Border i i i i) True (Border i i i i) True
 
-myLayout = avoidStruts $ (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts $ smartBorders $ (tiled ||| Mirror tiled ||| Full ||| simplestFloat)
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   =  renamed [Replace "Tall"] 
            $ mySpacing 8 
            $ ResizableTall 1 (3/100) (1/2) []
-
-     -- The default number of windows in the master pane
-     nmaster = 1
-
-     -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
      
-     delta   = 3/100
+     floating = renamed [Replace "Float"]
+           $ limitWindows 20 
 
 -- Percent of screen to increment by when resizing panes
 -- 'className' and 'resource' are used below.
