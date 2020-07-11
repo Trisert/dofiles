@@ -6,6 +6,7 @@
  # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 
+colorscript random
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -81,6 +82,7 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
 
+export PATH=~/.local/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
