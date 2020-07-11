@@ -1,5 +1,0 @@
-[2020-05-06 14:46:28.981] [renderer1] [error] Error: Unable to read file '/home/nicola/ShellSort.java' (Error: Unable to resolve non-existing file '/home/nicola/ShellSort.java')
-    at Object.t.createErrorWithActions (file:///usr/share/vscodium-bin/resources/app/out/vs/workbench/workbench.desktop.main.js:53:573)
-    at e.handleSetInputError (file:///usr/share/vscodium-bin/resources/app/out/vs/workbench/workbench.desktop.main.js:5422:601)
-    at e.handleSetInputError (file:///usr/share/vscodium-bin/resources/app/out/vs/workbench/workbench.desktop.main.js:5425:428)
-    at e.setInput (file:///usr/share/vscodium-bin/resources/app/out/vs/workbench/workbench.desktop.main.js:5422:317)
