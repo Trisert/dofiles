@@ -1,7 +1,3 @@
-if [[ ! -f $HOME/.antigen.zsh]]; then
-	curl -L git.io/antigen > .antigen.zsh
-fi
-
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
@@ -22,7 +18,7 @@ fi
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 alias tsm='transmission-remote'
 
-source /usr/share/zsh/share/antigen.zsh
+source $HOME/.antigen.zsh
 
 export FZF_DEFAULT_COMMAND="locate /"
 
