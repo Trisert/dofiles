@@ -1,3 +1,7 @@
+if [[ ! -f $HOME/.antigen.zsh]]; then
+	curl -L git.io/antigen > .antigen.zsh
+fi
+
 # Import colorscheme from 'wal' asynchronously
 # &   # Run the process in the background.
 # ( ) # Hide shell job control messages.
@@ -18,7 +22,7 @@ fi
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 alias tsm='transmission-remote'
 
-#source /usr/share/zsh/share/#antigen.zsh
+source /usr/share/zsh/share/antigen.zsh
 
 export FZF_DEFAULT_COMMAND="locate /"
 
@@ -94,64 +98,25 @@ export PATH=~/.emacs.d/bin:$PATH
 
 
 
-
 # Load the oh-my-zsh's library.
- #antigen use oh-my-zsh
+ antigen use oh-my-zsh
 
 # # Bundles from the default repo (robbyrussell's oh-my-zsh).
- #antigen bundle git
- #antigen bundle heroku
- #antigen bundle pip
- #antigen bundle lein
- #antigen bundle command-not-found
- #antigen bundle extract
- #antigen bundle zsh-autosuggestions
- #antigen bundle autojump
+ antigen bundle git
+ antigen bundle heroku
+ antigen bundle pip
+ antigen bundle lein
+ antigen bundle command-not-found
+ antigen bundle extract
+ antigen bundle zsh-autosuggestions
+ antigen bundle autojump
 
 # # Syntax highlighting bundle.
- #antigen bundle zsh-users/zsh-syntax-highlighting
+ antigen bundle zsh-users/zsh-syntax-highlighting
 
 # # Load the theme.
- #antigen theme romkatv/powerlevel10k
+ antigen theme romkatv/powerlevel10k
 
 # # Tell Antigen that you're done.
- #antigen apply
+ antigen apply
 
-### Added by Zinit's installer
-if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
-    print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
-    command mkdir -p "$HOME/.zinit" && command chmod g-rwX "$HOME/.zinit"
-    command git clone https://github.com/zdharma/zinit "$HOME/.zinit/bin" && \
-        print -P "%F{33}▓▒░ %F{34}Installation successful.%f%b" || \
-        print -P "%F{160}▓▒░ The clone has failed.%f%b"
-fi
-
-source "$HOME/.zinit/bin/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
-
-# Load a few important annexes, without Turbo
-# (this is currently required for annexes)
-zinit light-mode for \
-    zinit-zsh/z-a-rust \
-    zinit-zsh/z-a-as-monitor \
-    zinit-zsh/z-a-patch-dl \
-    zinit-zsh/z-a-bin-gem-node
-
-### End of Zinit's installer chunk
-zinit ice wait'!0'
-
-zinit ice depth=1; 
-zinit light romkatv/powerlevel10k
-
-zinit light zsh-users/zsh-syntax-highlighting
-
-zinit snippet 'https://github.com/robbyrussell/oh-my-zsh/raw/master/plugins/git/git.plugin.zsh'
-zinit snippet 'https://github.com/sorin-ionescu/prezto/blob/master/modules/helper/init.zsh'
-
-zinit snippet OMZ::plugins/git
-zinit snippet OMZ::plugins/pip
-zinit snippet OMZ::plugins/autojump
-zinit light zsh-users/zsh-autosuggestions
-zinit snippet OMZ::plugins/extract 
-zinit light zdharma/fast-syntax-highlighting 
