@@ -139,7 +139,7 @@ zinit light-mode for \
     zinit-zsh/z-a-bin-gem-node
 
 ### End of Zinit's installer chunk
-zinit ice wait'!0' 
+zinit ice wait'!0'
 
 zinit ice depth=1; 
 zinit light romkatv/powerlevel10k
@@ -154,4 +154,4 @@ zinit snippet OMZ::plugins/pip
 zinit snippet OMZ::plugins/autojump
 zinit light zsh-users/zsh-autosuggestions
 zinit snippet OMZ::plugins/extract 
-zinit light zsh-users/zsh-syntax-highlighting
+zinit light zdharma/fast-syntax-highlighting 
