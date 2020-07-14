@@ -6,8 +6,6 @@
  # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 
-colorscript random
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
