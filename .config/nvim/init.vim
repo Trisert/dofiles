@@ -4,8 +4,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 	    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 
-
-
     " Specify a directory for plugins
     " " - For Neovim: stdpath('data') . '/plugged'
     " " - Avoid using standard Vim directory names like 'plugin'
@@ -48,11 +46,13 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 
      Plug 'morhetz/gruvbox'
 
-     Plug 'git@github.com:Valloric/YouCompleteMe.git'
+     Plug 'git@github.com:Valloric/YouCompleteMe.git', {'do': './install.py'}
 
      Plug 'leafgarland/typescript-vim'
 
      Plug 'mbbill/undotree'
+
+     Plug 'dpretet/vim-leader-mapper'
 
      call plug#end()
 
@@ -89,4 +89,32 @@ let g:sonokai_disable_italic_comment = 1
  colorscheme gruvbox
  set background=dark
 
+ " Define the menu content with a Vim dictionary
+let g:leaderMenu = {'name':  "",
+             \'f': [":Files",       "FZF file search"],
+             \'b': [":Buffers",     "FZF buffer search"],
+             \'s': [":BLines",      "FZF text search into current buffer"],
+             \'S': [":Lines",       "FZF text search across loaded buffers"],
+             \'g': [":BCommits",    "FZF git commits of the current buffer"],
+             \'G': [":Commits",     "FZF git commits of the repository"],
+             \'v': [':vsplit',      'Split buffer vertically'],
+             \'h': [':split',       'Split buffer horizontally'],
+             \'d': [':bd',          'Close buffer'],
+             \'r': [':so $MYVIMRC', 'Reload vimrc without restarting Vim'],
+             \'l': [':ls',          'List opened buffers'],
+             \'t': [':Tags',        'FZF tag search'],
+             \'o': [':normal gf',   'Open file under cursor'],
+             \}
 
+ " Define leader key to space and call vim-leader-mapper
+nnoremap <Space> <Nop>
+let mapleader = "\<Space>"
+nnoremap <silent> <leader> :LeaderMapper "<Space>"<CR>
+vnoremap <silent> <leader> :LeaderMapper "<Space>"<CR>
+
+
+
+ nnoremap <leader>h :wincmd h<CR>
+ nnoremap <leader>j :wincmd j<CR>
+ nnoremap <leader>k :wincmd k<CR>
+ nnoremap <leader>l :wincmd l<CR>
