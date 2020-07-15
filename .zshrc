@@ -23,31 +23,6 @@ export FZF_DEFAULT_COMMAND="locate /"
 
 # fzf scripts
 
-# Change including hidden directories
-
-fda() {
-	local dir
-	dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
-}
-
-# Change directory with strings
-
-cf() {
-  local file
-
-  file="$(locate -Ai -0 $@ | grep -z -vE '~$' | fzf --read0 -0 -1)"
-
-  if [[ -n $file ]]
-  then
-     if [[ -d $file ]]
-     then
-        cd -- $file
-     else
-        cd -- ${file:h}
-     fi
-  fi
-}
-
 # fkill - kill process
 fkill() {
   local pid
@@ -59,7 +34,6 @@ fkill() {
   fi
 }
 
-
 # Open file
 fo() (
   IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
@@ -69,11 +43,6 @@ fo() (
     [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-nvim} "$file"
   fi
 )
-
-# fh - repeat history
-fh() {
-  eval $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -r 's/ *[0-9]*\*? *//' | sed -r 's/\\/\\\\/g')
-}
 
 timezsh() {
   shell=${1-$SHELL}
