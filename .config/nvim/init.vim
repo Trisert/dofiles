@@ -10,9 +10,6 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     " " - For Neovim: stdpath('data') . '/plugged'
     " " - Avoid using standard Vim directory names like 'plugin'
      call plug#begin('~/.vim/plugged')
-    "
-    " " Make sure you use single quotes
-    "
     " " Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
      Plug 'junegunn/vim-easy-align'
     "
@@ -49,17 +46,32 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 
      Plug 'ghifarit53/sonokai'
 
+     Plug 'morhetz/gruvbox'
 
-    " " Unmanaged plugin (manually installed and updated)
-    " Plug '~/my-prototype-plugin'
-    
-    " " Initialize plugin system
+     Plug 'git@github.com:Valloric/YouCompleteMe.git'
+
+     Plug 'leafgarland/typescript-vim'
+
+     Plug 'mbbill/undotree'
+?
      call plug#end()
 
- set nocompatible
- set number
+ syntax on
 
- set laststatus=2
+ set number
+ set noerrorbells
+ set tabstop=4 softtabstop=4
+ set shiftwidth=4
+ set expandtab
+ set smartindent
+ set nu
+ set nowrap
+ set smartcase
+ set noswapfile
+ set nobackup
+ set undodir=~/.vim/undodir
+ set undofile
+ set incsearch
 
  let g:lightline = {
 	\'colorscheme': 'sonokai',
@@ -73,6 +85,8 @@ let g:sonokai_style = 'espresso'
 let g:sonokai_enable_italic = 1
 let g:sonokai_disable_italic_comment = 1
 
-colorscheme sonokai
+" colorscheme sonokai
+ colorscheme gruvbox
+ set background=dark
 
 
