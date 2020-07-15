@@ -18,8 +18,6 @@ alias nnn="nnn -a"
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 alias tsm='transmission-remote'
 
-#source $HOME/.#antigen.zsh
-
 export FZF_DEFAULT_COMMAND="locate /"
 
 
@@ -96,31 +94,7 @@ export PATH=~/.emacs.d/bin:$PATH
 
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
-
-
-
-# Load the oh-my-zsh's library.
- #antigen use oh-my-zsh
-
-# # Bundles from the default repo (robbyrussell's oh-my-zsh).
- #antigen bundle git
- #antigen bundle heroku
- #antigen bundle pip
- #antigen bundle lein
- #antigen bundle command-not-found
- #antigen bundle extract
- #antigen bundle zsh-autosuggestions
- #antigen bundle autojump
-
-# # Syntax highlighting bundle.
- #antigen bundle zsh-users/zsh-syntax-highlighting
-
-# # Load the theme.
- #antigen theme romkatv/powerlevel10k
-
-# # Tell Antigen that you're done.
- #antigen apply
-
+ 
  # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
