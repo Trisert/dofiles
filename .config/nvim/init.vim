@@ -53,7 +53,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
      Plug 'leafgarland/typescript-vim'
 
      Plug 'mbbill/undotree'
-?
+
      call plug#end()
 
  syntax on
