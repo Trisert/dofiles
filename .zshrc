@@ -132,8 +132,11 @@ compinit
 _comp_options+=(globdots)		# Include hidden files.
 
 
-setopt inc_append_history
-setopt share_history
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+
+
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
