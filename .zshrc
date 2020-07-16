@@ -6,6 +6,7 @@
  # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
 
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -19,7 +20,7 @@ alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home
 alias tsm='transmission-remote'
 
 export FZF_DEFAULT_COMMAND="locate /"
-
+export FZF_DEFAULT_OPS="--sync"
 
 # fzf scripts
 
@@ -63,7 +64,7 @@ export PATH=~/.emacs.d/bin:$PATH
 
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
- 
+
  # Basic auto/tab complete:
 autoload -U compinit
 zstyle ':completion:*' menu select
@@ -116,3 +117,6 @@ zinit snippet OMZ::plugins/autojump
 
 zinit ice silent wait '!2'
 zinit snippet OMZ::plugins/extract
+
+zinit ice silect wait '!2'
+zinit snippet PZT::modules/command-not-found
