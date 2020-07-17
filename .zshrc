@@ -105,7 +105,6 @@ zinit light-mode for \
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-zinit ice silent wait '!1'
 zinit light zsh-users/zsh-autosuggestions
 
 zinit ice silent wait '!1'
