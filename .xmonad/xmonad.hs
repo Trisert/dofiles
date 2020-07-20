@@ -14,6 +14,7 @@ import XMonad.Prompt.Shell
 import XMonad.Prompt.XMonad
 import XMonad.Prompt.Man
 import XMonad.Prompt.Layout
+import XMonad.Prompt.Ssh
 
 -- Util --
 import XMonad.Util.SpawnOnce
@@ -169,6 +170,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     
     -- SinkAll floating windows
      , ((modm .|. shiftMask, xK_t), sinkAll)
+
+    -- Launch SshPrompt
+    , ((modm .|. shiftMask,  xK_s), sshPrompt ndXPConfig)
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
