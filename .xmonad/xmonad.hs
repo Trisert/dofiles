@@ -50,7 +50,7 @@ myBrowser  :: String
 myBrowser  = "firefox"
 
 myFont :: String
-myFont = "xft: JetBrains Mono:regular:pixelsize=13"
+myFont = "xft:MesloLGS NF:regular:pixelsize=13"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
