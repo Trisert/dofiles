@@ -14,7 +14,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-alias nnn="nnn -a"
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 alias tsm='transmission-remote'
 
@@ -79,8 +78,6 @@ HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
-
-
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
     print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -107,14 +104,17 @@ zinit light romkatv/powerlevel10k
 
 zinit light zsh-users/zsh-autosuggestions
 
-zinit ice silent wait '!1'
+zinit ice silent wait '2!'
 zinit light zdharma/fast-syntax-highlighting
 
-zinit ice silent wait lucid
+zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/autojump
 
-zinit ice silent wait '!2'
+zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/extract
 
-zinit ice silect wait '!2'
+zinit ice silect wait '2!'
 zinit snippet PZT::modules/command-not-found
+
+zinit ice silent wait '2!'
+zinit snippet OMZ::plugins/colored-man-pages
