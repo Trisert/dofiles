@@ -18,7 +18,7 @@ alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home
 alias tsm='transmission-remote'
 
 export FZF_DEFAULT_COMMAND="locate /"
-export FZF_DEFAULT_OPS="--sync"
+export FZF_DEFAULT_OPTS="--layout=reverse --sync"
 
 # fzf scripts
 
