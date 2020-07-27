@@ -1,11 +1,5 @@
-# Import colorscheme from 'wal' asynchronously
-# &   # Run the process in the background.
-# ( ) # Hide shell job control messages.
 (cat ~/.cache/wal/sequences &)
-
- # To add support for TTYs this line can be optionally added.
 source ~/.cache/wal/colors-tty.sh
-
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -18,7 +12,7 @@ alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home
 alias tsm='transmission-remote'
 
 export FZF_DEFAULT_COMMAND="locate /"
-export FZF_DEFAULT_OPTS="--layout=reverse --sync"
+export FZF_DEFAULT_OPTS="--reverse"
 
 # fzf scripts
 
@@ -55,11 +49,8 @@ export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
 
 export PATH=~/.local/bin:$PATH
 
-export PATH=~/.emacs.d/bin:$PATH
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
@@ -73,9 +64,8 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)		# Include hidden files.
 
-
-HISTSIZE=1000
-SAVEHIST=1000
+HISTSIZE=10000
+SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 ### Added by Zinit's installer
