@@ -1,2 +1,1 @@
-exec xmonad 
-sh .fehbg
+exec qtile 
