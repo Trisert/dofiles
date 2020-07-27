@@ -42,7 +42,6 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 
-
 myTerminal :: String 
 myTerminal = "st"
 
@@ -93,7 +92,7 @@ myScratchPads = [
       NS "htop" spawnTerm findTerm manageTerm
     ] 
  where 
- spawnTerm = myTerminal ++ " -t htop -e htop"
+ spawnTerm = myTerminal ++ " -e htop"
  findTerm  = resource =? "htop"
  manageTerm = customFloating $ W.RationalRect l t w h
             where
@@ -410,4 +409,3 @@ defaults = def {
         logHook            = myLogHook,
         startupHook        = myStartupHook
     }
-
