@@ -11,15 +11,6 @@ fi
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
 alias tsm='transmission-remote'
 
-export FZF_DEFAULT_COMMAND="locate /"
-export FZF_DEFAULT_OPTS="--reverse"
-
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
-
-export PATH=~/.local/bin:$PATH
-
 # fzf scripts
 
 # fkill - kill process
@@ -54,7 +45,7 @@ timezsh() {
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
  # Basic auto/tab complete:
-autoload -U compinit
+autoload -Uz compinit
 zstyle ':completion:*' menu select
 # Auto complete with case insenstivity
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -66,6 +57,16 @@ _comp_options+=(globdots)		# Include hidden files.
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
+
+export FZF_DEFAULT_COMMAND="locate /"
+export FZF_DEFAULT_OPTS="--reverse"
+
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
+
+export PATH=~/.local/bin:$PATH
+
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -101,9 +102,6 @@ zinit snippet OMZ::plugins/autojump
 
 zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/extract
-
-zinit ice silect wait '2!'
-zinit snippet PZT::modules/command-not-found
 
 zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/colored-man-pages
