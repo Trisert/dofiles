@@ -14,6 +14,12 @@ alias tsm='transmission-remote'
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse"
 
+export PATH="$PATH:$HOME/.rvm/bin"
+
+export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
+
+export PATH=~/.local/bin:$PATH
+
 # fzf scripts
 
 # fkill - kill process
@@ -41,13 +47,6 @@ timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do time $shell -i -c exit; done
 }
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
-
-export PATH=~/.local/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
