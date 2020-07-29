@@ -102,6 +102,3 @@ zinit snippet OMZ::plugins/autojump
 
 zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/extract
-
-zinit ice silent wait '2!'
-zinit snippet OMZ::plugins/colored-man-pages
