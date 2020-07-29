@@ -1,3 +1,9 @@
+"     _   _ ____                                                              
+"    | \ | |  _ \     Nicola Destro                                           
+"    |  \| | | | |    https://github.com/Trisert/dotfiles                     
+"    | |\  | |_| |                                                            
+"    |_| \_|____/                                                             
+"                                                                             
 if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
 	  silent !curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs
 	      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -51,6 +57,8 @@ if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
      Plug 'mbbill/undotree'
 
      Plug 'dpretet/vim-leader-mapper'
+
+     Plug 'johannesthyssen/vim-signit'
 
      call plug#end()
 
