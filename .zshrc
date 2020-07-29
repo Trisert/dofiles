@@ -8,7 +8,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.dotfiles/ --work-tree=/home/nicola'
+alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.cfg/ --work-tree=/home/nicola'
 alias tsm='transmission-remote'
 
 # fzf scripts
@@ -60,13 +60,9 @@ HISTFILE=~/.zsh_history
 
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse"
-
 export PATH="$PATH:$HOME/.rvm/bin"
-
 export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
-
 export PATH=~/.local/bin:$PATH
-
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -102,3 +98,5 @@ zinit snippet OMZ::plugins/autojump
 
 zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/extract
+
+zinit light kazhala/dotbare
