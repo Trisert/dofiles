@@ -1,4 +1,3 @@
-export EDITOR=nvim
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse --preview 'head -100 {}'"
 export PATH="$PATH:$HOME/.rvm/bin"
