@@ -26,7 +26,7 @@ fkill() {
 
 # Open file
 fo() (
-  IFS=$'\n' out=("$(fzf-tmux --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+  IFS=$'\n' out=("$(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
@@ -57,12 +57,6 @@ _comp_options+=(globdots)		# Include hidden files.
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-
-export FZF_DEFAULT_COMMAND="locate /"
-export FZF_DEFAULT_OPTS="--reverse --preview 'head -100 {}'"
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/home/nicola/.gem/ruby/2.7.0/bin:$PATH"
-export PATH=~/.local/bin:$PATH
 
 ### Added by Zinit's installer
 if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
