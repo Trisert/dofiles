@@ -368,8 +368,8 @@ myLogHook = return ()
 myStartupHook = do
        setWMName "LG3D"
        spawnOnce "setxkbmap it"
-       spawnOnce "udiskie"
        spawnOnce "wal -R"
+       spawnOnce "udiskie"
        spawnOnce "transmission-daemon"
 
 ------------------------------------------------------------------------
