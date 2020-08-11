@@ -1,4 +1,4 @@
-export SKIM_DEFAULT_COMMAND="locate /"
+export PATH="$HOME/.cargo/bin:$PATH"
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse"
 export PATH="$PATH:$HOME/.rvm/bin"
