@@ -1,5 +1,4 @@
 (cat ~/.cache/wal/sequences &)
-source ~/.cache/wal/colors-tty.sh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -7,6 +6,9 @@ source ~/.cache/wal/colors-tty.sh
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.cfg/ --work-tree=/home/nicola'
 alias tsm='transmission-remote'
@@ -39,20 +41,15 @@ timezsh() {
   for i in $(seq 1 10); do time $shell -i -c exit; done
 }
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
-
  # Basic auto/tab complete:
-autoload -Uz compinit
+autoload -Uz compinit ; compinit
 zstyle ':completion:*' menu select
 # Auto complete with case insenstivity
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
-zmodload zsh/complist
-compinit
-_comp_options+=(globdots)		# Include hidden files.
+#zmodload zsh/complist
+#compinit
+#_comp_options+=(globdots)		# Include hidden files.
 
 HISTSIZE=10000
 SAVEHIST=10000
@@ -71,8 +68,11 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
+zinit ice silent wait '2!'
 zinit light-mode for \
     zinit-zsh/z-a-rust \
     zinit-zsh/z-a-as-monitor \
@@ -92,3 +92,6 @@ zinit snippet OMZ::plugins/autojump
 
 zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/extract
+
+
+
