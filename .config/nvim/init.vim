@@ -48,8 +48,6 @@ if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
 
      Plug 'ghifarit53/sonokai'
 
-     Plug 'morhetz/gruvbox'
-
      Plug 'git@github.com:Valloric/YouCompleteMe.git', {'do': './install.py'}
 
      Plug 'leafgarland/typescript-vim'
@@ -59,6 +57,8 @@ if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
      Plug 'dpretet/vim-leader-mapper'
 
      Plug 'johannesthyssen/vim-signit'
+
+     Plug 'jacoborus/tender.vim'
 
      call plug#end()
 
@@ -80,20 +80,16 @@ if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
  set incsearch
 
  let g:lightline = {
-	\'colorscheme': 'sonokai',
+	\'colorscheme': 'tender',
 	\ }
 
  " important!!
 set termguicolors
 
-" the configuration options should be placed before `colorscheme sonokai`
-let g:sonokai_style = 'espresso'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-
-" colorscheme sonokai
- colorscheme gruvbox
- set background=dark
+ syntax enable 
+if(has("termguicolors"))
+ colorscheme tender
+endif
 
  " Define the menu content with a Vim dictionary
 let g:leaderMenu = {'name':  "",
