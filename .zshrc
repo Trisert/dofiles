@@ -44,11 +44,11 @@ zinit snippet OMZ::plugins/autojump
  
 zinit ice silent wait '2!'
 zinit snippet OMZ::plugins/extract
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.cfg/ --work-tree=/home/nicola'
-alias tsm='transmission-remote'
 
 # fzf scripts
 
@@ -91,4 +91,3 @@ zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-
