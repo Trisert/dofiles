@@ -47,6 +47,7 @@
    environment.systemPackages = with pkgs; [
      wget
      xclip 
+     zsh
      vim 
      git
      firefox 
