@@ -9,8 +9,14 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  
+  nix = {
+    gc = {
+     automatic = true;
+     dates = "daily";
+     options = "--delete-older-than 2d";
+   };
+  };
 
   system.autoUpgrade.enable= true;
   system.autoUpgrade.allowReboot = true;
@@ -47,9 +53,8 @@
    environment.systemPackages = with pkgs; [
      wget
      xclip 
-     zsh
-     vim 
      git
+     zsh
      firefox 
      xmonad-with-packages 
      netbeans 
@@ -75,12 +80,13 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-  
+
+   boot.kernelPackages = pkgs.linuxPackages_latest;  
+ 
    services = {
-  # Enable CUPS to print documents.
          printing.enable = true;
-  # Enable Tor
          tor.enable = false;
+         locate.enable = true;
     };
 
   # Enable sound.
@@ -97,7 +103,7 @@
 
   # Enable the KDE Desktop Environment.
    services.xserver.displayManager.sddm.enable = true;
-   services.xserver.desktopManager.plasma5.enable = true;
+  # services.xserver.desktopManager.plasma5.enable = true;
    services.xserver.windowManager = {                     # Open configuration for the window manager.
     xmonad.enable = true;                                # Enable xmonad.
     xmonad.enableContribAndExtras = true;                # Enable xmonad contrib and extras.
@@ -112,6 +118,17 @@
    users.users.nicola = {
      isNormalUser = true;
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     useDefaultShell = true;
+     shell = "/run/current-system/sw/bin/zsh";
+   };
+
+   programs = {
+      zsh = {
+       enable = true;
+     };
+      vim = {
+       defaultEditor = true;
+     };
    };
 
   # This value determines the NixOS release from which the default
@@ -123,3 +140,5 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
+
+
