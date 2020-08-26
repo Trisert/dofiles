@@ -13,7 +13,7 @@
   nix = {
     gc = {
      automatic = true;
-     dates = "daily";
+     dates = "hourly";
      options = "--delete-older-than 2d";
    };
   };
@@ -56,7 +56,8 @@
      git
      zsh
      firefox 
-     xmonad-with-packages 
+     xmonad-with-packages
+     xmobar
      netbeans 
      libreoffice-fresh
    ];
@@ -85,8 +86,11 @@
  
    services = {
          printing.enable = true;
-         tor.enable = false;
-         locate.enable = true;
+         tor.enable = true;
+         locate = { 
+	    enable = true;
+	    interval = "hourly";
+        };
     };
 
   # Enable sound.
@@ -103,7 +107,7 @@
 
   # Enable the KDE Desktop Environment.
    services.xserver.displayManager.sddm.enable = true;
-  # services.xserver.desktopManager.plasma5.enable = true;
+   services.xserver.desktopManager.plasma5.enable = true;
    services.xserver.windowManager = {                     # Open configuration for the window manager.
     xmonad.enable = true;                                # Enable xmonad.
     xmonad.enableContribAndExtras = true;                # Enable xmonad contrib and extras.
@@ -140,5 +144,3 @@
   system.stateVersion = "20.09"; # Did you read the comment?
 
 }
-
-
