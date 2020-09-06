@@ -9,12 +9,16 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
-  
+
+  nixpkgs.config.allowUnfree = true;
+  virtualisation.virtualbox.host.enable = true;
+  virtualisation.virtualbox.host.enableExtensionPack = true;
+
   nix = {
     gc = {
      automatic = true;
      dates = "hourly";
-     options = "--delete-older-than 2d";
+     options = "sudo --delete-older-than 2d";
    };
   };
 
@@ -130,6 +134,8 @@
      useDefaultShell = true;
      shell = "/run/current-system/sw/bin/zsh";
    };
+   
+   users.extraGroups.vboxusers.members = [ "nicola" ];
 
    programs = {
       zsh = {
