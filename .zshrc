@@ -32,9 +32,11 @@ zinit light-mode for \
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-zinit light zsh-users/zsh-autosuggestions
+#zinit light zsh-users/zsh-autosuggestions
 
-zinit ice silent wait '2!'
+zinit light marlonrichert/zsh-autocomplete
+
+#zinit ice silent wait '2!'
 zinit light zdharma/fast-syntax-highlighting
 
 zinit ice silent wait '2!'
@@ -67,9 +69,14 @@ fo() (
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-nvim} "$file"
+    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-vim} "$file"
   fi
 )
+
+op() {
+  file=$(locate / | sort -S 60% --parallel=8 -u | fzf)
+  nvim $file
+}
 
 timezsh() {
   shell=${1-$SHELL}
@@ -77,10 +84,10 @@ timezsh() {
 }
 
  # Basic auto/tab complete:
-autoload -Uz compinit ; compinit
-zstyle ':completion:*' menu select
+#autoload -Uz compinit ; compinit
+#zstyle ':completion:*' menu select
 # Auto complete with case insenstivity
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+#zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 
 #zmodload zsh/complist
 #compinit
@@ -91,3 +98,6 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+
+export FZF_DEFAULT_COMMAND="locate /"
+export FZF_DEFAULT_OPTS="--reverse"
