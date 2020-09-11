@@ -43,7 +43,7 @@ import qualified Data.Map        as M
 
 
 myTerminal :: String 
-myTerminal = "st"
+myTerminal = "alacritty"
 
 myBrowser  :: String
 myBrowser  = "firefox"
