@@ -48,8 +48,6 @@ if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
 
      Plug 'ghifarit53/sonokai'
 
-     Plug 'git@github.com:Valloric/YouCompleteMe.git', {'do': './install.py'}
-
      Plug 'leafgarland/typescript-vim'
 
      Plug 'mbbill/undotree'
