@@ -28,12 +28,14 @@ zinit wait lucid light-mode for \
      zinit-zsh/z-a-patch-dl \
      zinit-zsh/z-a-bin-gem-node
 
-zinit ice depth=1
-zinit light romkatv/powerlevel10k
+#zinit ice depth=1
+#zinit light romkatv/powerlevel10k
 
 #zinit light zsh-users/zsh-autosuggestions
 zinit wait lucid light-mode for \
 	marlonrichert/zsh-autocomplete \
+	atinit"zicompinit; zicdreplay" \
+	zdharma/fast-syntax-highlighting 
 	
 zinit wait lucid light-mode for \
 	OMZ::plugins/autojump \
@@ -96,3 +98,4 @@ HISTFILE=~/.zsh_history
 
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse"
+
