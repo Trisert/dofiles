@@ -34,13 +34,14 @@ zinit light romkatv/powerlevel10k
 #zinit light zsh-users/zsh-autosuggestions
 zinit wait lucid light-mode for \
 	atinit"zicompinit; zicdreplay" \
-	zdharma/fast-syntax-highlighting
+	zdharma/fast-syntax-highlighting \
+        marlonrichert/zsh-autocomplete
 
 zinit wait lucid light-mode for \
 	OMZ::plugins/autojump \
 	OMZ::plugins/extract
 
-zinit light marlonrichert/zsh-autocomplete
+#zinit light marlonrichert/zsh-autocomplete
 
 #zinit ice silent wait '2!'
 #zinit light zdharma/fast-syntax-highlighting
@@ -106,4 +107,3 @@ HISTFILE=~/.zsh_history
 
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse"
-
