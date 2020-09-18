@@ -33,24 +33,13 @@ zinit light romkatv/powerlevel10k
 
 #zinit light zsh-users/zsh-autosuggestions
 zinit wait lucid light-mode for \
-	atinit"zicompinit; zicdreplay" \
-	zdharma/fast-syntax-highlighting \
-        marlonrichert/zsh-autocomplete
-
+	marlonrichert/zsh-autocomplete \
+	
 zinit wait lucid light-mode for \
 	OMZ::plugins/autojump \
 	OMZ::plugins/extract
 
-#zinit light marlonrichert/zsh-autocomplete
-
-#zinit ice silent wait '2!'
-#zinit light zdharma/fast-syntax-highlighting
-
-#zinit ice silent wait '2!'
-#zinit snippet OMZ::plugins/autojump
- 
-#zinit ice silent wait '2!'
-#zinit snippet OMZ::plugins/extract
+zinit light marlonrichert/zsh-autocomplete
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
