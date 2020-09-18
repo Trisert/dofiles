@@ -22,8 +22,7 @@ autoload -Uz _zinit
 
 # Load a few important annexes, without Turbo
 # (this is currently required for annexes)
-zinit ice silent wait '2!'
-zinit light-mode for \
+zinit wait lucid light-mode for \
      zinit-zsh/z-a-rust \
      zinit-zsh/z-a-as-monitor \
      zinit-zsh/z-a-patch-dl \
@@ -33,17 +32,24 @@ zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
 #zinit light zsh-users/zsh-autosuggestions
+zinit wait lucid light-mode for \
+	atinit"zicompinit; zicdreplay" \
+	zdharma/fast-syntax-highlighting
+
+zinit wait lucid light-mode for \
+	OMZ::plugins/autojump \
+	OMZ::plugins/extract
 
 zinit light marlonrichert/zsh-autocomplete
 
 #zinit ice silent wait '2!'
-zinit light zdharma/fast-syntax-highlighting
+#zinit light zdharma/fast-syntax-highlighting
 
-zinit ice silent wait '2!'
-zinit snippet OMZ::plugins/autojump
+#zinit ice silent wait '2!'
+#zinit snippet OMZ::plugins/autojump
  
-zinit ice silent wait '2!'
-zinit snippet OMZ::plugins/extract
+#zinit ice silent wait '2!'
+#zinit snippet OMZ::plugins/extract
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -73,16 +79,15 @@ fo() (
   fi
 )
 
-op() {
-  file=$(locate / | sort -S 60% --parallel=8 -u | fzf)
-  nvim $file
-}
-
 timezsh() {
   shell=${1-$SHELL}
   for i in $(seq 1 10); do time $shell -i -c exit; done
 }
 
+openurl () {
+	wget -qO- "$@" | grep -aEo '(((http|https|gopher|gemini|ftp|ftps|git)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./@$&%?$#=_-~]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)' | 
+	sort -S 60% --parallel=8 -u | rofi -dmenu | xargs firefox &> /dev/null 
+}
  # Basic auto/tab complete:
 #autoload -Uz compinit ; compinit
 #zstyle ':completion:*' menu select
@@ -101,3 +106,4 @@ HISTFILE=~/.zsh_history
 
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse"
+
