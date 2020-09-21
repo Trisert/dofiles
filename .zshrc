@@ -28,20 +28,15 @@ zinit wait lucid light-mode for \
      zinit-zsh/z-a-patch-dl \
      zinit-zsh/z-a-bin-gem-node
 
-#zinit ice depth=1
-#zinit light romkatv/powerlevel10k
+zinit ice depth=1
+zinit light romkatv/powerlevel10k
 
-#zinit light zsh-users/zsh-autosuggestions
 zinit wait lucid light-mode for \
-	marlonrichert/zsh-autocomplete \
-	atinit"zicompinit; zicdreplay" \
-	zdharma/fast-syntax-highlighting 
-	
-zinit wait lucid light-mode for \
+	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+	zdharma/fast-syntax-highlighting \
 	OMZ::plugins/autojump \
-	OMZ::plugins/extract
-
-zinit light marlonrichert/zsh-autocomplete
+        OMZ::plugins/extract \
+	marlonrichert/zsh-autocomplete
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
@@ -98,4 +93,3 @@ HISTFILE=~/.zsh_history
 
 export FZF_DEFAULT_COMMAND="locate /"
 export FZF_DEFAULT_OPTS="--reverse"
-
