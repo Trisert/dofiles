@@ -1,6 +1,6 @@
 from typing import List  # noqa: F401
 
-from libqtile import bar, layout, widget, hook
+from libqtile import bar, layout, widget, hook, extension
 from libqtile.config import Click, Drag, Group, Key, Screen, ScratchPad, DropDown
 from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
@@ -113,20 +113,20 @@ screens = [
         top=bar.Bar(
             [
                 widget.CurrentLayout(),
-                widget.GroupBox(foreground = '#c5c8c6',
-                                font = 'MesloLGS NF'),
+                widget.GroupBox(),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.CheckUpdates(),
+                widget.Net(interface = "eno1",
+                           foreground = '#ff0000'),
+                widget.Sep(foreground='#85678f',
+                           padding=4),
+                widget.Memory(foreground='#5e8d87'),
+                widget.Sep(foreground='#85678f',
+                           padding=4),
                 widget.CPU(update_interval = 0.5),
-                widget.CPUGraph(),
-                widget.Chord(
-                    chords_colors={
-                        'launch': ("#ff0000", "#ffffff"),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                widget.Systray(),
+                widget.Sep(foreground='#85678f',
+                           padding=4),
                 widget.Clock(format='%Y-%m-%d %a %H:%M %p'),
             ],
             22,
