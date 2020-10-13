@@ -1,0 +1,4 @@
+#!/bin/sh
+
+walgur -r https://reddit.com/r/F1Porn
+wal -i $(awk '{print $4}' ~/.fehbg | tr -d "'")
