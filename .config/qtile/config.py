@@ -8,6 +8,8 @@ from libqtile.command import lazy
 import os 
 import subprocess
 
+os.system("walcolor &")
+
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~')
