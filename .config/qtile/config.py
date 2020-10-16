@@ -8,8 +8,6 @@ from libqtile.command import lazy
 import os 
 import subprocess
 
-os.system("walcolor &")
-
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser('~')
@@ -28,7 +26,7 @@ keys = [
     # Spawn my Programs
     Key([mod], "a", lazy.spawn("slock")),
     Key([mod], "s", lazy.spawn("firefox")),
-    Key([mod], "p", lazy.spawn("dmenu_run -c -l 8 -p Run")),
+    Key([mod], "p", lazy.spawn("fzfdmenu")),
 
     # Sound
     Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -100%")),
@@ -158,6 +156,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'dialog'},
     {'wmclass': 'download'},
     {'wmclass': 'error'},
+    {'wmclass': 'fzfdmenu'},
     {'wmclass': 'file_progress'},
     {'wmclass': 'notification'},
     {'wmclass': 'splash'},
