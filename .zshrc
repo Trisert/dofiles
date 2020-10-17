@@ -91,5 +91,4 @@ HISTFILE=~/.zsh_history
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
-export FZF_DEFAULT_COMMAND="locate /"
-export FZF_DEFAULT_OPTS="--reverse"
+. /usr/share/fzf/key-bindings.zsh
