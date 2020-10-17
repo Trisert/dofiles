@@ -22,7 +22,7 @@ if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
     "
     " " Multiple Plug commands can be written in a single line using |
     " separators
-     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+     Plug 'honza/vim-snippets'
 
      Plug 'preservim/nerdtree'
 
