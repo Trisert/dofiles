@@ -1,0 +1,15 @@
+#+TITLE: Dotfiles
+#+AUTHOR: Nicola Destro
+#+DESCRIPTION: Test per la org-mode
+
+* My Dotfiles dependences
+** If you use QTile:
+#+BEGIN_SRC
+Alacritty
+Firefox
+slock
+/bin/fzfmenu (Search in .local/bin)
+/bin/fzfdmenu (Search in .local/bin)
+#+END_SRC
+** If you use XMonad:
+#+BEGIN_SRC
