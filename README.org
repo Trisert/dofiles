@@ -13,3 +13,7 @@ slock
 #+END_SRC
 ** If you use XMonad:
 #+BEGIN_SRC
+Alacritty
+Firefox
+slock
+#+END_SRC
