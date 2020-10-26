@@ -49,7 +49,7 @@ myBrowser  :: String
 myBrowser  = "firefox"
 
 myFont :: String
-myFont = "xft:MesloLGS NF:regular:pixelsize=13"
+myFont = "xft:FiraCode Retina:regular:pixelsize=13"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -61,6 +61,7 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
+myBorderWidth :: Dimension
 myBorderWidth   = 1
 
 -- modMask lets you specify which modkey you want to use. The default
@@ -68,6 +69,7 @@ myBorderWidth   = 1
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
+myModMask :: KeyMask
 myModMask       = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
@@ -79,11 +81,14 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
+myWorkspaces :: [[Char]]
 myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
+myNormalBorderColor :: [Char]
 myNormalBorderColor  = "#dddddd"
+myFocusedBorderColor :: [Char]
 myFocusedBorderColor = "#261823"
 
 -- Scatchpads
@@ -95,11 +100,11 @@ myScratchPads = [
  spawnTerm = myTerminal ++ " -e htop"
  findTerm  = resource =? "htop"
  manageTerm = customFloating $ W.RationalRect l t w h
-            where
-	     h = 0.9
-	     w = 0.9
-	     t = 0.95 -h
-	     l = 0.95 -w
+        where
+         h = 0.9
+         w = 0.9
+         t = 0.95 -h
+         l = 0.95 -w
 
 ------------------------------------------------------------------------
 -- Xprompt Settings
@@ -140,10 +145,10 @@ calcPrompt c ans =
         trim  = f . f
             where f = reverse . dropWhile isSpace
 
-
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
+myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
@@ -175,6 +180,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Lock Screen
     , ((modm,               xK_a),      spawn "slock")
+
+    -- Launch Emacs
+    , ((modm .|. shiftMask, xK_d),      spawn "emacsclient -c")
     
     -- Launch myBrowser
     , ((modm,               xK_s),      safeSpawnProg myBrowser)
@@ -287,6 +295,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ------------------------------------------------------------------------
 -- Mouse bindings: default actions bound to mouse events
 --
+myMouseBindings :: XConfig l
+                   -> M.Map (KeyMask, Button) (Window -> X ())
 myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- mod-button1, Set the window to floating mode and move by dragging
@@ -322,7 +332,7 @@ myLayout = avoidStruts $ smartBorders $ (tiled ||| Mirror tiled ||| Full ||| sim
   where
      -- default tiling algorithm partitions the screen into two panes
      tiled   =  renamed [Replace "Tall"] 
-           $ mySpacing 8 
+           $ mySpacing 5
            $ ResizableTall 1 (3/100) (1/2) []
      
      floating = renamed [Replace "Float"]
@@ -331,6 +341,7 @@ myLayout = avoidStruts $ smartBorders $ (tiled ||| Mirror tiled ||| Full ||| sim
 -- Percent of screen to increment by when resizing panes
 -- 'className' and 'resource' are used below.
 --
+myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "MPlayer"        --> doFloat
     , className =? "Gimp"           --> doFloat
@@ -347,6 +358,7 @@ myManageHook = composeAll
 -- return (All True) if the default handler is to be run afterwards. To
 -- combine event hooks use mappend or mconcat from Data.Monoid.
 --
+myEventHook :: Event -> X All
 myEventHook = mempty
 
 ------------------------------------------------------------------------
@@ -355,6 +367,7 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
+myLogHook :: X()
 myLogHook = return ()
 
 ------------------------------------------------------------------------
@@ -365,18 +378,20 @@ myLogHook = return ()
 -- per-workspace layout choices.
 --
 -- By default, do nothing.
+myStartupHook :: X ()
 myStartupHook = do
        setWMName "LG3D"
        spawnOnce "setxkbmap it"
        spawnOnce "wal -R"
        spawnOnce "udiskie"
-       spawnOnce "transmission-daemon"
+       spawnOnce "systemctl --user enable --now emacs"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
 
 -- Run xmonad with the settings you specify. No need to modify this.
 --
+main :: IO ()
 main = do
   xmproc <- spawnPipe "xmobar"
   xmonad $ docks defaults
