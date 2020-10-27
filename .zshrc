@@ -1,11 +1,14 @@
 (cat ~/.cache/wal/sequences &)
 
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 ### Added by Zinit's installer
  if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
@@ -35,13 +38,12 @@ zinit wait lucid light-mode for \
 	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
 	zdharma/fast-syntax-highlighting \
 	OMZ::plugins/autojump \
-        OMZ::plugins/extract \
+    OMZ::plugins/tmux \
+    OMZ::plugins/extract \
 	marlonrichert/zsh-autocomplete
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.cfg/ --work-tree=/home/nicola'
+alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
 
 # fzf scripts
 
@@ -88,6 +90,7 @@ openurl () {
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
+ZSH_TMUX_AUTOSTART=true
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
