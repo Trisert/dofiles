@@ -1,6 +1,5 @@
 (cat ~/.cache/wal/sequences &)
 
-
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -35,8 +34,6 @@ zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
 zinit wait lucid light-mode for \
-	atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-	zdharma/fast-syntax-highlighting \
 	OMZ::plugins/autojump \
     OMZ::plugins/tmux \
     OMZ::plugins/extract \
@@ -90,7 +87,7 @@ openurl () {
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOSTART=false
 
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
