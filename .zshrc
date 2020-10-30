@@ -70,11 +70,7 @@ timezsh() {
   for i in $(seq 1 10); do time $shell -i -c exit; done
 }
 
-openurl () {
-	wget -qO- "$@" | grep -aEo '(((http|https|gopher|gemini|ftp|ftps|git)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./@$&%?$#=_-~]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)' | 
-	sort -S 60% --parallel=8 -u | rofi -dmenu | xargs firefox &> /dev/null 
-}
- # Basic auto/tab complete:
+# Basic auto/tab complete:
 #autoload -Uz compinit ; compinit
 #zstyle ':completion:*' menu select
 # Auto complete with case insenstivity
