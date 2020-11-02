@@ -36,11 +36,13 @@ zinit light romkatv/powerlevel10k
 zinit wait lucid light-mode for \
 	OMZ::plugins/autojump \
     OMZ::plugins/tmux \
-    OMZ::plugins/extract \
-	marlonrichert/zsh-autocomplete
+    OMZ::plugins/extract
+
+zinit load marlonrichert/zsh-autocomplete
 
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.cfg/ --work-tree=/home/nicola'
 alias rot13="tr 'A-Za-z' 'N-ZA-Mn-za-m'"
+alias em="emacs -nw"
 
 # fzf scripts
 
@@ -61,7 +63,7 @@ fo() (
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
-    [ "$key" = ctrl-o ] && open "$file" || ${EDITOR:-nvim} "$file"
+    [ "$key" = ctrl-o ] && open "$file" || emacs -nw "$file"
   fi
 )
 
@@ -78,7 +80,7 @@ timezsh() {
 
 #zmodload zsh/complist
 #compinit
-#_comp_options+=(globdots)		# Include hidden files.
+#_comp_options+=(globdots)  # Include hidden files.
 
 HISTSIZE=10000
 SAVEHIST=10000
