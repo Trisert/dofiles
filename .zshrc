@@ -33,7 +33,7 @@ zinit wait lucid light-mode for \
 zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
-zinit wait lucid light-mode for \
+zinit wait lucid for \
 	OMZ::plugins/autojump \
     OMZ::plugins/tmux \
     OMZ::plugins/extract
