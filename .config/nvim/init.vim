@@ -34,11 +34,9 @@ if empty(glob('$HOME/.local/share/nvim/site/autoload/plug.vim'))
     "
     " " Plugin options
      Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-    
-    "  Fuzzy-Finder
-     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-     Plug 'junegunn/fzf.vim'
-    
+   
+     Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
     " Lightline
      Plug 'itchyny/lightline.vim'
      
@@ -112,9 +110,31 @@ let mapleader = "\<Space>"
 nnoremap <silent> <leader> :LeaderMapper "<Space>"<CR>
 vnoremap <silent> <leader> :LeaderMapper "<Space>"<CR>
 
-
-
  nnoremap <leader>h :wincmd h<CR>
  nnoremap <leader>j :wincmd j<CR>
  nnoremap <leader>k :wincmd k<CR>
  nnoremap <leader>l :wincmd l<CR>
+
+ " coc.nvim start
+
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
