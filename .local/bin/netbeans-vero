@@ -1,3 +1,5 @@
-#!/bin/sh
+#!/usr/bin/python
 
-eval $(/usr/bin/netbeans)
+import subprocess
+
+subprocess.Popen("/usr/bin/netbeans")
