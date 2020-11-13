@@ -43,7 +43,7 @@ import qualified Data.Map        as M
 
 
 myTerminal :: String 
-myTerminal = "alacritty"
+myTerminal = "st"
 
 myBrowser  :: String
 myBrowser  = "firefox"
@@ -111,9 +111,9 @@ myScratchPads = [
 ndXPConfig :: XPConfig
 ndXPConfig = def
       { font = myFont
-      , bgColor             = "#261823"
+      , bgColor             = "#1d1f21"
       , fgColor             = "#ffffff"
-      , bgHLight            = "#f2a59a"
+      , bgHLight            = "#de935f" --"#f2a59a"
       , fgHLight            = "#ffffff"
       , borderColor         = "#535974"
       , promptBorderWidth   = 0
@@ -385,6 +385,7 @@ myStartupHook = do
        spawnOnce "wal -R"
        spawnOnce "udiskie"
        spawnOnce "systemctl --user enable --now emacs"
+       spawnOnce "picom"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
