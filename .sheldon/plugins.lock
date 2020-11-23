@@ -1,0 +1,41 @@
+version = "0.6.0"
+home = "/home/nicola"
+config_dir = "/home/nicola/.sheldon"
+data_dir = "/home/nicola/.sheldon"
+config_file = "/home/nicola/.sheldon/plugins.toml"
+lock_file = "/home/nicola/.sheldon/plugins.lock"
+clone_dir = "/home/nicola/.sheldon/repos"
+download_dir = "/home/nicola/.sheldon/downloads"
+
+[[plugins]]
+name = "autocomplete"
+source_dir = "/home/nicola/.sheldon/repos/github.com/marlonrichert/zsh-autocomplete"
+files = ["/home/nicola/.sheldon/repos/github.com/marlonrichert/zsh-autocomplete/zsh-autocomplete.plugin.zsh"]
+apply = ["source"]
+
+[[plugins]]
+name = "powerlevel10k"
+source_dir = "/home/nicola/.sheldon/repos/github.com/romkatv/powerlevel10k"
+files = ["/home/nicola/.sheldon/repos/github.com/romkatv/powerlevel10k/powerlevel10k.zsh-theme"]
+apply = ["source"]
+
+[[plugins]]
+name = "extract"
+source_dir = "/home/nicola/.sheldon/downloads/raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract"
+files = ["/home/nicola/.sheldon/downloads/raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/plugins/extract/extract.plugin.zsh"]
+apply = ["source"]
+[templates.PATH]
+value = "export PATH=\"{{ dir }}:$PATH\""
+each = false
+
+[templates.path]
+value = "path=( \"{{ dir }}\" $path )"
+each = false
+
+[templates.fpath]
+value = "fpath=( \"{{ dir }}\" $fpath )"
+each = false
+
+[templates.source]
+value = "source \"{{ file }}\""
+each = true
