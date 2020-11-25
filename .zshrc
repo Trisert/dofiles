@@ -26,7 +26,6 @@ zinit ice depth=1
 zinit light romkatv/powerlevel10k
 
 zinit wait lucid for \
-    OMZ::plugins/tmux \
     OMZ::plugins/extract
 
 alias dotfiles='/usr/bin/git --git-dir=/home/nicola/.cfg/ --work-tree=/home/nicola'
@@ -77,9 +76,6 @@ _comp_options+=(globdots)  # Include hidden files.
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
-ZSH_TMUX_AUTOSTART=false
-
-[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
 . /home/nicola/.cargo/registry/src/github.com-1ecc6299db9ec823/skim-0.9.3/shell/key-bindings.zsh
 
