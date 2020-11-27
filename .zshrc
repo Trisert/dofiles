@@ -7,8 +7,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 ### Added by Zinit's installer
  if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
      print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -80,3 +78,6 @@ HISTFILE=~/.zsh_history
 . /home/nicola/.cargo/registry/src/github.com-1ecc6299db9ec823/skim-0.9.3/shell/key-bindings.zsh
 
 eval "$(zoxide init zsh)"
+
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
