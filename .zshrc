@@ -1,12 +1,5 @@
 (cat ~/.cache/wal/sequences &)
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
 ### Added by Zinit's installer
  if [[ ! -f $HOME/.zinit/bin/zinit.zsh ]]; then
      print -P "%F{33}▓▒░ %F{220}Installing %F{33}DHARMA%F{220} Initiative Plugin Manager (%F{33}zdharma/zinit%F{220})…%f"
@@ -20,7 +13,7 @@ source "$HOME/.zinit/bin/zinit.zsh"
 autoload -Uz _zinit
 (( ${+_comps} )) && _comps[zinit]=_zinit
 
-zinit ice depth=1
+zinit ice wait'!' lucid atload'true; _p9k_precmd' nocd depth=1
 zinit light romkatv/powerlevel10k
 
 zinit wait lucid for \
@@ -44,7 +37,7 @@ fkill() {
 
 # Open file
 fo() (
-IFS=$'\n'  out=("$(sk --ansi -c 'find / -type f')") #out=("$(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
+IFS=$'\n'  out=("$(sk --ansi --reverse -c 'fd -HI -j8 . /')") #out=("$(fzf --query="$1" --exit-0 --expect=ctrl-o,ctrl-e)")
   key=$(head -1 <<< "$out")
   file=$(head -2 <<< "$out" | tail -1)
   if [ -n "$file" ]; then
@@ -80,4 +73,3 @@ HISTFILE=~/.zsh_history
 eval "$(zoxide init zsh)"
 
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
