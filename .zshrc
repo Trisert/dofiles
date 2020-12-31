@@ -1,5 +1,7 @@
 #(cat ~/.cache/wal/sequences &)
 
+setopt HIST_SAVE_NO_DUPS
+
 source $HOME/.zinit/plugins/romkatv---zsh-defer/zsh-defer.plugin.zsh
 
 ### Added by Zinit's installer
@@ -21,7 +23,7 @@ zinit light romkatv/powerlevel10k
 zinit wait lucid light-mode for \
     OMZ::plugins/extract \
     romkatv/zsh-prompt-benchmark \
-    romkatv/zsh-defer
+    romkatv/zsh-defer 
 
 zsh-defer -t 2 source $HOME/.zsh/alias.zsh
 
