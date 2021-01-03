@@ -20,6 +20,7 @@ import XMonad.Prompt.Ssh
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.Dmenu
 
 -- Layout --
 import XMonad.Layout.LayoutModifier
@@ -49,7 +50,7 @@ myBrowser  :: String
 myBrowser  = "firefox"
 
 myFont :: String
-myFont = "xft:FiraCode Retina:regular:pixelsize=13"
+myFont = "xft:JetBrainsMono Nerd Font:regular:pixelsize=13.5"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
@@ -70,7 +71,7 @@ myBorderWidth   = 1
 -- "windows key" is usually mod4Mask.
 --
 myModMask :: KeyMask
-myModMask       = mod4Mask
+myModMask = mod4Mask
 
 -- The default number of workspaces (virtual screens) and their names.
 -- By default we use numeric strings, but any string may be used as a
@@ -269,7 +270,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart")
+    , ((modm              , xK_q     ), spawn "stack exec -- xmonad --recompile; stack exec -- xmonad --restart")
 
     ]
     ++
@@ -384,7 +385,6 @@ myStartupHook = do
        spawnOnce "setxkbmap it"
        spawnOnce "wal -R"
        spawnOnce "udiskie"
-       spawnOnce "systemctl --user enable --now emacs"
        spawnOnce "picom"
 
 ------------------------------------------------------------------------
