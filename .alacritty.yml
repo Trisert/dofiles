@@ -109,7 +109,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: FiraCode Retina
+    family: JetBrainsMono Nerd Font
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -182,33 +182,34 @@ font:
 # If `true`, bold text is drawn using the bright color variants.
 draw_bold_text_with_bright_colors: true
 
-#colors:
+# Colors (Material Theme)
+colors:
   # Default colors
-  # primary:
- #  background: '0x1b0c14'
- #  foreground: '0xdcbfcd'
+  primary:
+    background: '0x1e282d'
+    foreground: '0xc4c7d1'
 
   # Normal colors
-  # normal:
-  #  black:   '0x291520'
-  # red:     '0x351d2a'
-  # green:   '0xffffff'
-  # yellow:  '0x6a3f56'
-  # blue:    '0x905876'
-  # magenta: '0xbb789c'
-  # cyan:    '0xd1aabd'
-  # white:   '0xeddfe6'
+  normal:
+    black:   '0x666666'
+    red:     '0xeb606b'
+    green:   '0xc3e88d'
+    yellow:  '0xf7eb95'
+    blue:    '0x80cbc4'
+    magenta: '0xff2f90'
+    cyan:    '0xaeddff'
+    white:   '0xffffff'
 
   # Bright colors
-  # bright:
-  #black:   '0xf9ad7f'
-  # red:     '0xeec3ae'
-  # green:   '0x3ebad4'
-  # yellow:  '0x4bd7a9'
-  # blue:    '0x55ba96'
-  # magenta: '0xee79bb'
-  #cyan:    '0x76cde4'
-    # white:   '0xcfc3ef'
+  bright:
+    black:   '0xff262b'
+    red:     '0xeb606b'
+    green:   '0xc3e88d'
+    yellow:  '0xf7eb95'
+    blue:    '0x7dc6bf'
+    magenta: '0x6c71c4'
+    cyan:    '0x35434d'
+    white:   '0xffffff'
 
   # Dim colors
   #
