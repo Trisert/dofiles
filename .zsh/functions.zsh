@@ -11,7 +11,7 @@ fkill() {
 
 # Open file
 fo() (
- IFS=$'\n'  out=("$(sk --regex --reverse -c 'plocate /' --color=hl:69)") #out=("$(fzf --query="$1"
+ IFS=$'\n'  out=("$(sk --regex --reverse -c 'fd -HI -j8 . '/'' --color=hl:69)") #out=("$(fzf --query="$1"
  key=$(head -1 <<< "$out")
  file=$(head -2 <<< "$out" | tail -1)
  if [ -n "$file" ]; then
