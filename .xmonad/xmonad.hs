@@ -1,6 +1,7 @@
 -- System --
 import Graphics.X11.ExtraTypes.XF86
 import XMonad
+import System.Directory
 import Data.Monoid
 import System.Exit
 import XMonad.ManageHook
@@ -21,6 +22,7 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 import XMonad.Util.NamedScratchpad
 import XMonad.Util.Dmenu
+import XMonad.Util.EZConfig (additionalKeysP)
 
 -- Layout --
 import XMonad.Layout.LayoutModifier
@@ -34,6 +36,7 @@ import XMonad.Layout.NoBorders
 -- Hooks --
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.EwmhDesktops
 
 -- Actions --
 import XMonad.Actions.WithAll
@@ -44,10 +47,10 @@ import qualified Data.Map        as M
 
 
 myTerminal :: String 
-myTerminal = "st"
+myTerminal = "alacritty"
 
 myBrowser  :: String
-myBrowser  = "firefox"
+myBrowser  = "brave"
 
 myFont :: String
 myFont = "xft:JetBrainsMono Nerd Font:regular:pixelsize=13.5"
@@ -146,119 +149,123 @@ calcPrompt c ans =
         trim  = f . f
             where f = reverse . dropWhile isSpace
 
+editPrompt :: String -> X ()
+editPrompt home = do
+    str <- inputPrompt cfg "EDIT: ~/"
+    case str of
+        Just s  -> openInEditor s
+        Nothing -> pure ()
+  where
+    cfg = ndXPConfig { defaultText = "" }
+
+openInEditor :: String -> X ()
+openInEditor path =
+    safeSpawn "emacsclient" ["-c", "-a", "emacs", path]
+
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
-myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+--myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
+--myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
+myKeys :: String -> [([Char], X ())]
+myKeys home =
 
     -- launch a terminal
-    [ ((modm .|. shiftMask, xK_Return), spawn myTerminal)
+    [ --((modm .|. shiftMask, xK_Return), spawn myTerminal)
+      ("M-S-<Return>", spawn myTerminal)
 
     -- launch dmenu
     --, ((modm,               xK_p     ), spawn "dmenu_run")
 
     -- launch gmrun
-    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
+    -- , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- Launch ShellPrompt
-     , ((modm, xK_p), shellPrompt ndXPConfig )
+     , ("M-p", shellPrompt ndXPConfig )
+
+    -- Launch EditPrompt
+     , ("M-S-f", editPrompt home)
      
     -- Launch ManPrompt
-     , ((modm .|. shiftMask, xK_m), manPrompt ndXPConfig)
+    -- , ((modm .|. shiftMask, xK_m), manPrompt ndXPConfig)
      
     -- Launch CalcPrompt
-     , ((modm .|. shiftMask, xK_l), calcPrompt ndXPConfig "qalc")
+     , ("M-S-l", calcPrompt ndXPConfig "qalc")
 
     -- Launch LayoutPompt
-    , ((modm .|. shiftMask,  xK_y), layoutPrompt ndXPConfig)
+    -- , ((modm .|. shiftMask,  xK_y), layoutPrompt ndXPConfig)
     
     -- SinkAll floating windows
-     , ((modm .|. shiftMask, xK_t), sinkAll)
+     , ("M-S-t", sinkAll)
 
     -- Launch SshPrompt
-    , ((modm .|. shiftMask,  xK_s), sshPrompt ndXPConfig)
+    --, ((modm .|. shiftMask,  xK_s), sshPrompt ndXPConfig)
 
     -- Lock Screen
-    , ((modm,               xK_a),      spawn "slock")
+    , ("M-a",      spawn "slock")
 
-    -- Launch Emacs
-    , ((modm .|. shiftMask, xK_d),      spawn "emacsclient -c")
-    
     -- Launch myBrowser
-    , ((modm,               xK_s),      safeSpawnProg myBrowser)
+    , ("M-s",      safeSpawnProg myBrowser)
 
     -- Lower Volume
-    , ((0,         xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
+    , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
 
     -- Raise Volume
-    , ((0,         xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
+    , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
 
     -- Launch Htop Scratchpad
-    , ((modm,               xK_g), namedScratchpadAction myScratchPads "htop")
+    --, ((modm,               xK_g), namedScratchpadAction myScratchPads "htop")
 
     -- close focused window
-    , ((modm .|. shiftMask, xK_c     ), kill)
+    , ("M-S-c", kill)
 
      -- Rotate through the available layout algorithms
-    , ((modm,               xK_space ), sendMessage NextLayout)
+    --, ((modm,               xK_space ), sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
-    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    --, ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    , ((modm,               xK_n     ), refresh)
+    --, ((modm,               xK_n     ), refresh)
 
     -- Move focus to the next window
-    , ((modm,               xK_Tab   ), windows W.focusDown)
+    , ("M-<Tab>", windows W.focusDown)
 
     -- Move focus to the next window
-    , ((modm,               xK_j     ), windows W.focusDown)
+    , ("M-j", windows W.focusDown)
 
     -- Move focus to the previous window
-    , ((modm,               xK_k     ), windows W.focusUp  )
+    , ("M-k", windows W.focusUp  )
 
     -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
+    , ("M-m", windows W.focusMaster  )
 
     -- Swap the focused window and the master window
-    , ((modm,               xK_Return), windows W.swapMaster)
+    , ("M-<Return>", windows W.swapMaster)
 
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
+    , ("M-S-j", windows W.swapDown  )
 
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ("M-S-k", windows W.swapUp    )
 
     -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
+    , ("M-h", sendMessage Shrink)
 
     -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
+    , ("M-l", sendMessage Expand)
 
     -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
+    , ("M-t", withFocused $ windows . W.sink)
 
     -- Increment the number of windows in the master area
-    -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
-
-    -- Shrink the master area
-    , ((modm,               xK_h     ), sendMessage Shrink)
-
-    -- Expand the master area
-    , ((modm,               xK_l     ), sendMessage Expand)
-
-    -- Push window back into tiling
-    , ((modm,               xK_t     ), withFocused $ windows . W.sink)
-
-    -- Increment the number of windows in the master area
-
-    -- Increment the number of windows in the master area
-    , ((modm              , xK_comma ), sendMessage (IncMasterN 1))
+    --, ((modm              , xK_comma ), sendMessage (IncMasterN 1))
+    , ("M-<Up>", sendMessage (IncMasterN 1))
 
     -- Deincrement the number of windows in the master area
-    , ((modm              , xK_period), sendMessage (IncMasterN (-1)))
+    --, ((modm              , xK_period), sendMessage (IncMasterN (-1)))
+    , ("M-<Down>", sendMessage (IncMasterN (-1)))
 
     -- Toggle the status bar gap
     -- Use this binding with avoidStruts from Hooks.ManageDocks.
@@ -267,30 +274,30 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- , ((modm              , xK_b     ), sendMessage ToggleStruts)
 
     -- Quit xmonad
-    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
+    , ("M-S-q", io (exitWith ExitSuccess))
 
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "stack exec -- xmonad --recompile; stack exec -- xmonad --restart")
+    , ("M-q", spawn "xmonad --recompile; xmonad --restart")
 
     ]
-    ++
+  --  ++
 
     --
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     --
-    [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
-        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
+   -- [((m .|. modm, k), windows $ f i)
+   --     | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+   --     , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+   -- ++
 
     --
     -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
     -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
     --
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+  --  [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+  --      | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+  --      , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
 ------------------------------------------------------------------------
@@ -394,8 +401,9 @@ myStartupHook = do
 --
 main :: IO ()
 main = do
+  home <- getHomeDirectory
   xmproc <- spawnPipe "xmobar"
-  xmonad $ docks defaults
+  xmonad $ docks def
 
 -- A structure containing your configuration settings, overriding
 -- fields in the default config. Any you don't override, will
@@ -403,7 +411,7 @@ main = do
 --
 -- No need to modify this.
 --
-defaults = def {
+      {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -415,7 +423,7 @@ defaults = def {
         focusedBorderColor = myFocusedBorderColor,
 
       -- key bindings
-        keys               = myKeys,
+      --  keys               = myKeys,
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
@@ -424,4 +432,4 @@ defaults = def {
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
         startupHook        = myStartupHook
-    }
+    } `additionalKeysP` myKeys home
