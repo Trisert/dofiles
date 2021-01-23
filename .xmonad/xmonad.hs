@@ -160,7 +160,8 @@ editPrompt home = do
 
 openInEditor :: String -> X ()
 openInEditor path =
-    safeSpawn "emacsclient" ["-c", "-a", "emacs", path]
+    -- safeSpawn "emacsclient" ["-c", "-a", "emacs", path]
+     safeSpawn "alacritty" ["-e", "nvim", path]
 
 
 ------------------------------------------------------------------------
@@ -182,6 +183,7 @@ myKeys home =
     -- , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")
 
     -- Launch ShellPrompt
+    --, ((modm, xK_p), shellPrompt ndXPConfig )
      , ("M-p", shellPrompt ndXPConfig )
 
     -- Launch EditPrompt
@@ -191,33 +193,40 @@ myKeys home =
     -- , ((modm .|. shiftMask, xK_m), manPrompt ndXPConfig)
      
     -- Launch CalcPrompt
+    -- , ((modm .|. shiftMask, xK_l), calcPrompt ndXPConfig "qalc")
      , ("M-S-l", calcPrompt ndXPConfig "qalc")
 
     -- Launch LayoutPompt
     -- , ((modm .|. shiftMask,  xK_y), layoutPrompt ndXPConfig)
     
     -- SinkAll floating windows
+     --, ((modm .|. shiftMask, xK_t), sinkAll)
      , ("M-S-t", sinkAll)
 
     -- Launch SshPrompt
     --, ((modm .|. shiftMask,  xK_s), sshPrompt ndXPConfig)
 
     -- Lock Screen
+    --, ((modm,               xK_a),      spawn "slock")
     , ("M-a",      spawn "slock")
 
     -- Launch myBrowser
+    --, ((modm,               xK_s),      safeSpawnProg myBrowser)
     , ("M-s",      safeSpawnProg myBrowser)
 
     -- Lower Volume
+    --, ((0,         xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
     , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
 
     -- Raise Volume
+    --, ((0,         xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
     , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
 
     -- Launch Htop Scratchpad
     --, ((modm,               xK_g), namedScratchpadAction myScratchPads "htop")
 
     -- close focused window
+    --, ((modm .|. shiftMask, xK_c     ), kill)
     , ("M-S-c", kill)
 
      -- Rotate through the available layout algorithms
@@ -230,6 +239,7 @@ myKeys home =
     --, ((modm,               xK_n     ), refresh)
 
     -- Move focus to the next window
+    --, ((modm,               xK_Tab   ), windows W.focusDown)
     , ("M-<Tab>", windows W.focusDown)
 
     -- Move focus to the next window
@@ -428,7 +438,7 @@ main = do
 
       -- hooks, layouts
         layoutHook         = myLayout,
-        manageHook         = myManageHook,
+        manageHook         = myManageHook <+> manageDocks,
         handleEventHook    = myEventHook,
         logHook            = myLogHook,
         startupHook        = myStartupHook
