@@ -12,10 +12,7 @@ import XMonad.Prompt
 import XMonad.Prompt.FuzzyMatch
 import XMonad.Prompt.Input
 import XMonad.Prompt.Shell
-import XMonad.Prompt.XMonad
-import XMonad.Prompt.Man
-import XMonad.Prompt.Layout
-import XMonad.Prompt.Ssh
+import XMonad.Prompt.AppLauncher as AL
 
 -- Util --
 import XMonad.Util.SpawnOnce
@@ -184,49 +181,38 @@ myKeys home =
 
     -- Launch ShellPrompt
     --, ((modm, xK_p), shellPrompt ndXPConfig )
-     , ("M-p", shellPrompt ndXPConfig )
+     , ("M-p", shellPrompt ndXPConfig)
+
+    -- Launch AppLauncher
+     , ("M-S-e", AL.launchApp ndXPConfig "zathura")
 
     -- Launch EditPrompt
      , ("M-S-f", editPrompt home)
-     
-    -- Launch ManPrompt
-    -- , ((modm .|. shiftMask, xK_m), manPrompt ndXPConfig)
      
     -- Launch CalcPrompt
     -- , ((modm .|. shiftMask, xK_l), calcPrompt ndXPConfig "qalc")
      , ("M-S-l", calcPrompt ndXPConfig "qalc")
 
-    -- Launch LayoutPompt
-    -- , ((modm .|. shiftMask,  xK_y), layoutPrompt ndXPConfig)
-    
     -- SinkAll floating windows
      --, ((modm .|. shiftMask, xK_t), sinkAll)
      , ("M-S-t", sinkAll)
 
-    -- Launch SshPrompt
-    --, ((modm .|. shiftMask,  xK_s), sshPrompt ndXPConfig)
-
     -- Lock Screen
-    --, ((modm,               xK_a),      spawn "slock")
     , ("M-a",      spawn "slock")
 
     -- Launch myBrowser
-    --, ((modm,               xK_s),      safeSpawnProg myBrowser)
     , ("M-s",      safeSpawnProg myBrowser)
 
     -- Lower Volume
-    --, ((0,         xF86XK_AudioLowerVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
     , ("<XF86AudioLowerVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ -10%")
 
     -- Raise Volume
-    --, ((0,         xF86XK_AudioRaiseVolume), spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
     , ("<XF86AudioRaiseVolume>", spawn "pactl set-sink-volume @DEFAULT_SINK@ +10%")
 
     -- Launch Htop Scratchpad
     --, ((modm,               xK_g), namedScratchpadAction myScratchPads "htop")
 
     -- close focused window
-    --, ((modm .|. shiftMask, xK_c     ), kill)
     , ("M-S-c", kill)
 
      -- Rotate through the available layout algorithms
