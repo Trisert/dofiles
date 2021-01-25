@@ -43,6 +43,9 @@ import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
 
+myEditor :: String
+myEditor = "alacritty -e nvim"
+
 myTerminal :: String 
 myTerminal = "alacritty"
 
@@ -129,6 +132,7 @@ ndXPConfig = def
       , alwaysHighlight     = True
       , maxComplRows        = Just 6      -- set to Just 5 for 5 rows
       , promptKeymap        = defaultXPKeymap
+      , sorter              = fuzzySort
       }
 
 
@@ -187,7 +191,8 @@ myKeys home =
      , ("M-S-e", AL.launchApp ndXPConfig "zathura")
 
     -- Launch EditPrompt
-     , ("M-S-f", editPrompt home)
+    -- , ("M-S-f", editPrompt home)
+     , ("M-S-f", AL.launchApp ndXPConfig "emacs")
      
     -- Launch CalcPrompt
     -- , ((modm .|. shiftMask, xK_l), calcPrompt ndXPConfig "qalc")
@@ -215,8 +220,8 @@ myKeys home =
     -- close focused window
     , ("M-S-c", kill)
 
-     -- Rotate through the available layout algorithms
-    --, ((modm,               xK_space ), sendMessage NextLayout)
+    -- Rotate through the available layout algorithms
+    , ("M-<Space>", sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
     --, ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
