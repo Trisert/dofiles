@@ -36,12 +36,12 @@ import XMonad.Hooks.SetWMName
 import XMonad.Hooks.EwmhDesktops
 
 -- Actions --
+import XMonad.Actions.GridSelect
 import XMonad.Actions.WithAll
 import XMonad.Actions.WindowMenu
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
-
 
 myEditor :: String
 myEditor = "alacritty -e nvim"
@@ -98,11 +98,10 @@ myFocusedBorderColor = "#261823"
 -- Scatchpads
 myScratchPads :: [NamedScratchpad]
 myScratchPads = [
-      NS "htop" spawnTerm findTerm manageTerm
+        NS "htop" "xterm -e htop" (title =? "htop") manageTerm
     ] 
  where 
  spawnTerm = myTerminal ++ " -e htop"
- findTerm  = resource =? "htop"
  manageTerm = customFloating $ W.RationalRect l t w h
         where
          h = 0.9
@@ -165,6 +164,10 @@ openInEditor path =
      safeSpawn "alacritty" ["-e", "nvim", path]
 
 
+ndGSConfig = def {gs_cellheight = 100
+                , gs_cellwidth = 100  
+                }
+
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
 --
@@ -177,6 +180,9 @@ myKeys home =
     [ --((modm .|. shiftMask, xK_Return), spawn myTerminal)
       ("M-S-<Return>", spawn myTerminal)
 
+    -- Htop Scratchpad
+    , ("M-S-v", namedScratchpadAction myScratchPads "htop")
+
     -- launch dmenu
     --, ((modm,               xK_p     ), spawn "dmenu_run")
 
@@ -186,6 +192,9 @@ myKeys home =
     -- Launch ShellPrompt
     --, ((modm, xK_p), shellPrompt ndXPConfig )
      , ("M-p", shellPrompt ndXPConfig)
+
+    -- GridSelect
+     , ("M-g", goToSelected ndGSConfig)
 
     -- Launch AppLauncher
      , ("M-S-e", AL.launchApp ndXPConfig "zathura")
@@ -224,13 +233,12 @@ myKeys home =
     , ("M-<Space>", sendMessage NextLayout)
 
     --  Reset the layouts on the current workspace to default
-    --, ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf)
+    --, ("M-S-<Space>", setLayout $ XMonad.layoutHook conf)
 
     -- Resize viewed windows to the correct size
-    --, ((modm,               xK_n     ), refresh)
+    , ("M-n", refresh)
 
     -- Move focus to the next window
-    --, ((modm,               xK_Tab   ), windows W.focusDown)
     , ("M-<Tab>", windows W.focusDown)
 
     -- Move focus to the next window
