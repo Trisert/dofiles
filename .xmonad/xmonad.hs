@@ -391,7 +391,7 @@ myStartupHook :: X ()
 myStartupHook = do
        setWMName "LG3D"
        spawnOnce "setxkbmap it"
-       spawnOnce "wal -R"
+       spawnOnce "source $HOME/.fehbg"  --"wal -R"
        spawnOnce "udiskie"
        spawnOnce "picom"
 
