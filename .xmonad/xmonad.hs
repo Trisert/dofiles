@@ -50,7 +50,7 @@ myTerminal :: String
 myTerminal = "alacritty"
 
 myBrowser  :: String
-myBrowser  = "brave"
+myBrowser  = "firefox"
 
 myFont :: String
 myFont = "xft:JetBrainsMono Nerd Font:regular:pixelsize=13.5"
@@ -201,7 +201,7 @@ myKeys home =
 
     -- Launch EditPrompt
     -- , ("M-S-f", editPrompt home)
-     , ("M-S-f", AL.launchApp ndXPConfig "emacs")
+     , ("M-S-f", AL.launchApp ndXPConfig "alacritty -e nvim")
      
     -- Launch CalcPrompt
     -- , ((modm .|. shiftMask, xK_l), calcPrompt ndXPConfig "qalc")
@@ -400,7 +400,7 @@ myStartupHook = do
        setWMName "LG3D"
        spawnOnce "setxkbmap it"
        spawnOnce "source $HOME/.fehbg"  --"wal -R"
-       spawnOnce "udiskie"
+       spawnOnce "udiskie &"
        spawnOnce "picom"
 
 ------------------------------------------------------------------------
