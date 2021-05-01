@@ -15,20 +15,15 @@ Config { font = "xft:JetBrainsMono Nerd Font:pixelsize=13:antialias=true:hinting
        , overrideRedirect = True
        , commands = [ Run Network "eno1" ["-L","0","-H","32",
                                           "--normal","green","--high","red"] 10
-                    , Run Memory ["-t","Mem: <usedratio>%"] 10
-                    , Run Swap [] 10
+                    , Run Memory ["-t", "mem: <used>M (<usedratio>%)"] 20
+                    , Run Swap ["-t", "swap: <used>M (<usedratio>%)"] 10
                     , Run Com "uname" ["-s","-r"] "" 36000
                     , Run Date "%A %d/%m/%Y %H:%M:%S" "date" 10
-                    , Run MultiCpu       [ "--template" , "Cpu: <total0>%|<total1>%"
-                             , "--Low"      , "50"         -- units: %
-                             , "--High"     , "85"         -- units: %
-                             , "--low"      , "darkgreen"
-                             , "--normal"   , "darkorange"
-                             , "--high"     , "darkred"
-                             ] 10
+                    , Run Cpu ["-t", "cpu: (<total>%)","-H","50","--high","red"] 20
                     ]
        , sepChar = "%"
        , alignSep = "}{"
-       , template = "%multicpu% | %memory% * %swap% | %eno1% }\
+       , template = "%cpu% | %memory% * %swap% | %eno1% }\
                     \{ <fc=#de935f>%date%</fc> | %uname%"
        }
+
